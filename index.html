@@ -26,6 +26,8 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/src/assets/icons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
+  <!-- bootstrap 5 -->
+  <link rel="stylesheet" href="src/css/bootstrap.css">
   <!-- css -->
   <link rel="stylesheet" href="src/css/styles.min.css">
   <!-- fontawesome -->
@@ -36,23 +38,26 @@
   <title>CookingBox</title>
 </head>
 <body>
-  <h1>CookingBox</h1>
+  <div class="container">
+    <h1>CookingBox</h1>
+  </div>
   <div id="root">
     <!-- Content rendering -->
   </div>
 
-  <!-- script -->
+  <!-- START : script -->
+  <script src="src/script/main.js" type="module"></script>
   <!-- service worker -->
   <script>
     const registerServiceWorker = () => {
       return navigator.serviceWorker.register("/service-worker.js")
-        .then(registration => {
-          console.log('Register Service Worker is Success!');
-          return registration;
-        })
-        .catch(error => {
-          console.error(`Register Service Worker is Failed, Error: ${error}`);
-        });
+      .then(registration => {
+        console.log('Register Service Worker is Success!');
+        return registration;
+      })
+      .catch(error => {
+        console.error(`Register Service Worker is Failed, Error: ${error}`);
+      });
     };
     // check browser service worker
     if( 'serviceWorker' in navigator ){
@@ -60,8 +65,8 @@
       registerServiceWorker();
     }else{
       console.log('Your Browser Doesn\'t Support Service Worker!');
-    }
-
-  </script>
+    } 
+    </script>
+  <!-- END : script -->
 </body>
 </html>

@@ -5,6 +5,7 @@
 - HTML5
 - CSS3
 - Javascript
+- Bootstrap 5
 - Sass
 - PWA
 - WorkBox
