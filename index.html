@@ -38,12 +38,67 @@
   <title>CookingBox</title>
 </head>
 <body>
-  <div class="container">
-    <h1>CookingBox</h1>
-  </div>
+
+
+  <!-- START APP SHELL: Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <!-- brand -->
+      <a href="/" class="navbar__brand">
+        <img src="src/assets/logo/logo-full.svg" alt="CookingBox">
+      </a>
+      <!-- toggle -->
+      <div id="menu-toggle" class="navbar__toggle d-lg-none">
+        <span class="line-toggle"></span>
+        <span class="line-toggle"></span>
+        <span class="line-toggle"></span>
+      </div>
+      <!-- navigation -->
+      <div class="navbar__navigation d-none d-lg-block">
+        <a href="#home" class="navlink active">Home</a>
+        <a href="#searchby" class="navlink">Search By</a>
+        <a href="#collections" class="navlink">Collections</a>
+        <a href="#about" class="navlink">About</a>
+      </div>
+    </div>
+    <!-- mobile navigation -->
+    <div class="navbar__mobile__navigation">
+      <a href="#home" class="navlink active">Home</a>
+      <a href="#searchby" class="navlink">Search By</a>
+      <a href="#collections" class="navlink">Collections</a>
+      <a href="#about" class="navlink">About</a>
+    </div>
+  </nav>
+  <!-- darkness -->
+  <div class="darkness"></div>
+  <!-- END APP SHELL: Navbar -->
+
+
+
+
   <div id="root">
     <!-- Content rendering -->
   </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- START : script -->
   <script src="src/script/main.js" type="module"></script>
