@@ -1,0 +1,42 @@
+{
+ "name": "CookingBox",
+ "short_name": "CookingBox",
+ "description": "LEARN TO COOK FROM HOME LIKE A CHEF, Make the family kitchen like a restaurant kitchen more productive at home by cooking for the family or starting a culinary business. With our recipe recipes!. CookingBox is a website service that provides delicious recipes from several countries. We also support people to enjoy cooking in their homes because it is more economical and healthier. You can also open a culinary business. We are here for those of you who want to cook but are confused about what to cook, start cooking with us for your beloved family.",
+ "start_url": "/index.html",
+ "display": "standalone",
+ "background_color": "#ffffff",
+ "theme_color": "#ffffff",
+ "icons": [
+  {
+   "src": "/src/assets/icons/android-icon-48x48.png",
+   "sizes": "48x48",
+   "type": "image\/png",
+   "density": "1.0"
+  },
+  {
+   "src": "/src/assets/icons/android-icon-72x72.png",
+   "sizes": "72x72",
+   "type": "image\/png",
+   "density": "1.5"
+  },
+  {
+   "src": "/src/assets/icons/android-icon-96x96.png",
+   "sizes": "96x96",
+   "type": "image\/png",
+   "density": "2.0"
+  },
+  {
+   "src": "/src/assets/icons/android-icon-144x144.png",
+   "sizes": "144x144",
+   "type": "image\/png",
+   "density": "3.0"
+  },
+  {
+   "src": "/src/assets/icons/android-icon-192x192.png",
+   "sizes": "192x192",
+   "type": "image\/png",
+   "density": "4.0",
+   "purpose": "maskable"
+  }
+ ]
+}
