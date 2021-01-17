@@ -1,6 +1,7 @@
 import { root } from './dom.js';
 // get route
 export let route = window.location.hash.substr(1) || 'home';
+if(route === 'searchby') route = 'home'
 
 renderPage(route);
 

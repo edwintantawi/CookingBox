@@ -5,7 +5,7 @@
     padding: 50px 0;
   }
   @include breakpoint(xl) {
-    padding: 130px 0;
+    padding: 100px 0;
   }
   &__image {
     text-align: center;
@@ -17,6 +17,9 @@
     }
     img {
       width: 80%;
+      @include breakpoint(lg) {
+        width: 90%;
+      }
     }
   }
 
@@ -50,17 +53,22 @@
     a {
       display: flex;
       justify-content: center;
+      align-items: center;
       background-color: $orange;
-      width: 320px;
-      padding: 16px 0;
+      max-width: 320px;
+      width: 90%;
+      padding: 12px 16px;
       border-radius: 6px;
       color: white;
+      font-size: 14px;
       text-decoration: none;
       font-weight: bold;
       // be responsive
       margin: 0 auto 30px;
       @include breakpoint(lg) {
-        margin: 0 0 30px;
+        padding: 14px 0;
+        font-size: 16px;
+        margin: 20px 0 56px;
       }
 
       img {
