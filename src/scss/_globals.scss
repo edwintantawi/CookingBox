@@ -1,3 +1,25 @@
+// scroller
+::-webkit-scrollbar {
+  background-color: $white;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: $orange;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 body {
   height: 9999px;
+  // background-color: $yellow;
+  &.stuck {
+    overflow: hidden;
+  }
+}
+#root {
+  padding-top: 59px;
+  @include breakpoint(lg) {
+    padding-top: 69px;
+  }
 }

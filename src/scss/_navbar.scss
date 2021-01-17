@@ -4,6 +4,7 @@
   width: 100%;
   background-color: $white;
   padding: 4px 0 10px;
+
   .container {
     background-color: $white;
     position: relative;
@@ -15,19 +16,19 @@
 
   &__brand {
     img {
-      height: 55px;
+      height: 45px;
 
       @include breakpoint(lg) {
-        height: 70px;
+        height: 55px;
       }
     }
   }
 
   &__toggle {
     display: inline-block;
-    height: 38px;
-    width: 38px;
-    margin-bottom: 4px;
+    height: 30px;
+    width: 30px;
+    margin-bottom: 3.5px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -36,9 +37,9 @@
 
     .line-toggle {
       display: block;
-      height: 3px;
+      height: 2px;
       background-color: $dark;
-      margin: 3px 2px;
+      margin: 2.5px 2px;
       border-radius: 10px;
       transition: 500ms;
       &:first-child {
@@ -47,7 +48,6 @@
 
       &:last-child {
         transform-origin: left;
-        // transform: translateX(-10px);
       }
     }
     &.change {
@@ -55,7 +55,7 @@
     }
     &.change .line-toggle {
       &:first-child {
-        transform: rotate(44deg) translateX(-4px);
+        transform: rotate(44deg) translateX(-3px);
       }
 
       &:nth-child(2) {
@@ -64,13 +64,13 @@
       }
 
       &:last-child {
-        transform: rotate(-44deg) translateX(-4px);
+        transform: rotate(-44deg) translateX(-3px);
       }
     }
   }
 
   &__navigation {
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     a {
       color: $dark;
       text-decoration: none;
@@ -114,7 +114,7 @@
     justify-content: space-between;
     text-align: center;
     padding: 25px;
-    margin-top: 36px;
+    margin-top: 30px;
     width: 90%;
     height: 214px;
     background-color: $white;

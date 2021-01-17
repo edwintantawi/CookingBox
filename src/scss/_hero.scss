@@ -1,0 +1,81 @@
+.hero {
+  padding: 16px 0 64px;
+
+  @include breakpoint(md) {
+    padding: 50px 0;
+  }
+  @include breakpoint(xl) {
+    padding: 130px 0;
+  }
+  &__image {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include breakpoint(lg) {
+      justify-content: flex-end;
+    }
+    img {
+      width: 80%;
+    }
+  }
+
+  &__text {
+    // be responsive
+    margin-top: 10px;
+    text-align: center;
+    @include breakpoint(lg) {
+      text-align: left;
+      margin-top: 0;
+    }
+    h1 {
+      height: 0;
+      overflow: hidden;
+    }
+    img {
+      width: 100%;
+    }
+    p {
+      font-size: 12px;
+      font-weight: 300;
+      margin: 10px 0 16px;
+      @include breakpoint(md) {
+        font-size: 14px;
+      }
+      @include breakpoint(lg) {
+        font-size: 18px;
+        max-width: 85%;
+      }
+    }
+    a {
+      display: flex;
+      justify-content: center;
+      background-color: $orange;
+      width: 320px;
+      padding: 16px 0;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      // be responsive
+      margin: 0 auto 30px;
+      @include breakpoint(lg) {
+        margin: 0 0 30px;
+      }
+
+      img {
+        display: inline-block;
+        width: fit-content;
+        height: 26px;
+        margin-left: 4px;
+      }
+    }
+    .displayed {
+      display: grid;
+      // be responsive
+      min-width: 100%;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 9px;
+    }
+  }
+}

@@ -1,48 +1,31 @@
-import { mobileNav, root, toggler, navLink, mobileLink, darkness } from './dom.js';
-
-export function renderPage(route){
-  const xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = function(){
-
-
-    if( this.readyState === 4 ){
-      if( this.status === 200 ){
-        root.innerHTML = this.responseText;
-      } else if( this.status === 404 ){
-        root.innerHTML = "<p>ERROR 404</p>"
-      } else {
-        root.innerHTML = "<p>Opss.. Somethings Wrong</p>"
-      }
-    }
-  }
-  xhr.open("GET", `src/pages/${route}.html`, true);
-  xhr.send();
-} 
-
+import { mobileNav, toggler, navLink, mobileLink, darkness, body } from './dom.js';
+import { renderPage, route } from './router.js';
 // navbar toggle
 toggler.addEventListener('click', ()=>{
-  toggler.classList.toggle('change');
-  mobileNav.classList.toggle('show');
-  darkness.classList.toggle('show');
+  changeState();
 });
 
 // navigation link
 navLink.forEach(link => {
-  console.log(link)
   link.addEventListener('click', () => {
+    const linkRoute = link.getAttribute('href').substr(1); 
     switch(link.textContent){
       case 'Home':
-        linkState('Home')
+        renderPage(linkRoute);
+        linkState('home');
         break;
-      case 'Search By':
-        linkState('Home')
+        case 'Search By':
+        renderPage('home');
+        linkState('home');
         break;
-      case 'Collections':
-        linkState('Collections')
+        case 'Collections':
+          console.log("im go")
+        renderPage(linkRoute);
+        linkState('collections');
         break;
-      case 'About':
-        linkState('About')
+        case 'About':
+        renderPage(linkRoute);
+        linkState('about');
         break;
       default:
         break;
@@ -50,11 +33,14 @@ navLink.forEach(link => {
   });
 });
 
+// onload active link state
+linkState(route);
+
 // active link
 function linkState(route){
-  console.log(route)
   navLink.forEach(link => {
-    if( link.textContent === route ){
+    console.log(link.getAttribute('href').substr(1))
+    if( link.getAttribute('href').substr(1) === route ){
       link.classList.add('active');
     } else {
       link.classList.remove('active');
@@ -64,10 +50,25 @@ function linkState(route){
 
 // mobile navigation link
 mobileLink.forEach(link => {
-  console.log(link)
   link.addEventListener('click', () => {
-    toggler.classList.toggle('change');
-    mobileNav.classList.toggle('show');
-    darkness.classList.toggle('show');
+    changeState();
   });
 });
+
+function changeState(){
+  toggler.classList.toggle('change');
+  mobileNav.classList.toggle('show');
+  darkness.classList.toggle('show');
+  body.classList.toggle('stuck');
+}
+// on scroll smallest navbar in desktop
+// document.addEventListener('scroll', () => {
+//   const position = window.pageYOffset;
+
+//   if( position > 200 ){
+//     navbar.classList.add('smallest');
+//   } else {
+//     navbar.classList.remove('smallest')
+//   }
+
+// });
