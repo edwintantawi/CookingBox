@@ -5,8 +5,9 @@
   background-color: $white;
   padding: 4px 0 10px;
   .container {
+    background-color: $white;
     position: relative;
-    z-index: 9;
+    z-index: 99;
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -14,7 +15,11 @@
 
   &__brand {
     img {
-      height: 70px;
+      height: 55px;
+
+      @include breakpoint(lg) {
+        height: 70px;
+      }
     }
   }
 
@@ -25,7 +30,7 @@
     margin-bottom: 4px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     cursor: pointer;
     transition: 500ms ease-in-out;
 
@@ -110,7 +115,7 @@
     text-align: center;
     padding: 25px;
     margin-top: 36px;
-    width: 80%;
+    width: 90%;
     height: 214px;
     background-color: $white;
     border-radius: 8px;
