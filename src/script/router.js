@@ -1,4 +1,4 @@
-import { root } from './dom.js';
+import { root, footer } from './dom.js';
 import { homePage, linkState } from './action.js';
 // get route
 export let route = window.location.hash.substr(1) || 'home';
@@ -18,6 +18,9 @@ export function renderPage(route){
         root.innerHTML = this.responseText;
         if( route === 'home' ){
           homePage();
+        }
+        if( route === 'detail' ){
+          footer.style.display = 'none';
         }
       } else if( this.status === 404 ){
         root.innerHTML = "<h1><center>ERROR 404 Page Not Found</center></h1>"

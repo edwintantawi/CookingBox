@@ -1,4 +1,4 @@
-import { mobileNav, toggler, navLink, mobileLink, darkness, body, footerYears,  } from './dom.js';
+import { mobileNav, toggler, navLink, mobileLink, darkness, body, footerYears, footer } from './dom.js';
 import { renderPage } from './router.js';
 import { getRandomFoods } from './api.js';
 // navbar toggle
@@ -14,18 +14,21 @@ navLink.forEach(link => {
       case 'Home':
         renderPage(linkRoute);
         linkState('home');
+        footer.style.display = 'block';
         break;
-        case 'Search By':
-        renderPage('home');
-        linkState('home');
-        break;
+        // case 'Search By':
+        // renderPage('home');
+        // linkState('home');
+        // break;
         case 'Collections':
         renderPage(linkRoute);
         linkState('collections');
+        footer.style.display = 'block';
         break;
         case 'About':
         renderPage(linkRoute);
         linkState('about');
+        footer.style.display = 'block';
         break;
       default:
         break;
