@@ -1,5 +1,6 @@
-import { mobileNav, toggler, navLink, mobileLink, darkness, body, footerYears } from './dom.js';
-import { renderPage, route } from './router.js';
+import { mobileNav, toggler, navLink, mobileLink, darkness, body, footerYears,  } from './dom.js';
+import { renderPage } from './router.js';
+import { getRandomFoods } from './api.js';
 // navbar toggle
 toggler.addEventListener('click', ()=>{
   changeState();
@@ -19,7 +20,6 @@ navLink.forEach(link => {
         linkState('home');
         break;
         case 'Collections':
-          console.log("im go")
         renderPage(linkRoute);
         linkState('collections');
         break;
@@ -33,13 +33,11 @@ navLink.forEach(link => {
   });
 });
 
-// onload active link state
-linkState(route);
+
 
 // active link
-function linkState(route){
+export function linkState(route){
   navLink.forEach(link => {
-    console.log(link.getAttribute('href').substr(1))
     if( link.getAttribute('href').substr(1) === route ){
       link.classList.add('active');
     } else {
@@ -71,3 +69,15 @@ if( firstYears === nowYears ){
 } else {
   footerYears.innerHTML = `${firstYears} - ${nowYears}`;
 }
+
+// home page script
+export function homePage(){
+  getRandomFoods();
+  const showMoreBtn = document.querySelector('.btn-show-more');
+  const loader = document.querySelector('.loader');
+  showMoreBtn.addEventListener('click', () => {
+    getRandomFoods();
+    loader.style.display = 'flex';
+  });
+}
+

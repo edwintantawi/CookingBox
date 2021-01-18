@@ -50,7 +50,7 @@
         max-width: 85%;
       }
     }
-    a {
+    button {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -62,6 +62,8 @@
       color: white;
       font-size: 14px;
       font-weight: bold;
+      border: none;
+      outline: none;
       // be responsive
       margin: 0 auto 30px;
       @include breakpoint(lg) {
@@ -221,7 +223,7 @@
           width: 100%;
           height: 100%;
           background-color: $grey;
-          background-image: url("/src/assets/images/image1.png");
+          // background-image: url("/src/assets/images/image1.png");
           background-position: center;
           background-size: cover;
           transition: 500ms;
@@ -270,7 +272,6 @@
   .show-more {
     text-align: center;
     margin-top: 30px;
-
     @include breakpoint(lg) {
       margin-top: 50px;
     }
@@ -279,10 +280,12 @@
       background-color: $orange;
       padding: 9px 28px;
       border: none;
+      outline: none;
       border-radius: 6px;
       color: white;
       font-weight: bold;
       font-size: 14px;
+      visibility: hidden;
 
       @include breakpoint(lg) {
         padding: 15px 37px;

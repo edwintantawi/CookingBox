@@ -1,9 +1,13 @@
 import { root } from './dom.js';
+import { homePage, linkState } from './action.js';
 // get route
 export let route = window.location.hash.substr(1) || 'home';
 if(route === 'searchby') route = 'home'
 
 renderPage(route);
+
+// onload active link state
+linkState(route);
 
 export function renderPage(route){
   const xhr = new XMLHttpRequest();
@@ -12,6 +16,9 @@ export function renderPage(route){
     if( this.readyState === 4 ){
       if( this.status === 200 ){
         root.innerHTML = this.responseText;
+        if( route === 'home' ){
+          homePage();
+        }
       } else if( this.status === 404 ){
         root.innerHTML = "<h1><center>ERROR 404 Page Not Found</center></h1>"
       } else {

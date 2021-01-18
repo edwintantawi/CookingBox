@@ -15,9 +15,9 @@
           <p>
             Make the family kitchen like a restaurant kitchen more productive at home by cooking for the family or starting a culinary business. With our recipe recipes!
           </p>
-          <a href="#searchby">
+          <button class="cta-button">
             Explore Cooking Recipes <img src="/src/assets/illustrations/spatula.svg" alt="spatula icon">
-          </a>
+          </button>
           <div class="displayed">
             <img src="/src/assets/images/image1.png" alt="yummy food image">
             <img src="/src/assets/images/image2.png" alt="yummy food image">
@@ -31,7 +31,7 @@
 <!-- END: Hero -->
 
 <!-- START: FOOD LIST -->
-<section class="list">
+<section class="list" id="searchby">
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -47,167 +47,15 @@
         </div>
       </div>
       <div class="col-12">
-        <div class="list__child">
+        <div class="list__child" id="render-food">
           <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
           <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes ksdjfksda sdkfjksad kdsjfdssd</h6>
-              </div>
-            </a>
+        </div>
+        <div class="loader">
+          <div class="spinner-border text-warning" role="status">
+            <span class="visually-hidden">Loading Foods...</span>
           </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
-          <!-- START: Food Card -->
-          <div class="list__child__card">
-            <a href="#">
-              <div class="wrap">
-                <div class="picture">
-                </div>
-                <div class="label">
-                  Vegetarian
-                </div>
-              </div>
-              <div class="food-title">
-                <h6>Spicy Arrabiata Pennes</h6>
-              </div>
-            </a>
-          </div>
-          <!-- END: Food Card -->
+          <span class="text">collect delicious food...</span>
         </div>
         <div class="show-more">
           <button class="btn-show-more">
