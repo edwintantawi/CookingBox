@@ -2,22 +2,48 @@
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
 let numRandomFood = 20;
+let countFood = 0;
 
 export async function getRandomFoods(){
   
   try {
     let foodList = [];
-    for( let i = 1; i <= numRandomFood; i++ ){
+    // for( let i = 1; i <= numRandomFood; i++ ){
+    //   const response = await fetch(`${BASE_URL}/random.php`);
+    //   const responseJson = await response.json();
+      
+    //   if( responseJson.error ){
+    //     console.error(responseJson.message)
+    //   } else {
+    //     foodList.push(responseJson.meals[0]);
+    //   }
+    // }
+    while(countFood < numRandomFood){
       const response = await fetch(`${BASE_URL}/random.php`);
       const responseJson = await response.json();
       
       if( responseJson.error ){
         console.error(responseJson.message)
       } else {
-        foodList.push(responseJson.meals[0]);
+        if( countFood === 0 ){
+          foodList.push(responseJson.meals[0]);
+          countFood += 1;
+        }else{
+          let isSame = false;
+          for(let i = 0; i < foodList.length; i++ ){
+            if(responseJson.meals[0].idMeal === foodList[i] ){
+              isSame = true;
+            }
+          }
+          if(isSame == false){
+            foodList.push(responseJson.meals[0]);
+              countFood += 1;
+          }
+        }
       }
     }
-    renderRandomFoods(foodList)
+    renderRandomFoods(foodList);
+    countFood = 0;
     
   } catch (error) {
     console.log(error);
@@ -36,7 +62,7 @@ function renderRandomFoods(foods){
     <div class="list__child__card">
     <a href="#">
     <div class="wrap">
-    <div class="picture"  style="background-image: url(${food.strMealThumb});">
+    <div class="picture"  style="background-image: url(${food.strMealThumb});" loading="lazy">
     </div>
     <div class="label">
     ${food.strCategory}
