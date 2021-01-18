@@ -11,7 +11,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  height: 9999px;
+  // height: 9999px;
   // background-color: $yellow;
   &.stuck {
     overflow: hidden;
@@ -26,4 +26,8 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.uniq {
+  font-family: $uniq;
 }

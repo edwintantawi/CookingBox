@@ -82,7 +82,7 @@
       // be responsive
       min-width: 100%;
       grid-template-columns: repeat(3, 1fr);
-      column-gap: 9px;
+      column-gap: 8px;
     }
   }
 }
@@ -150,7 +150,7 @@
           i {
             margin-right: 5px;
             font-size: 18px;
-            color: $dark;
+            color: rgb(102, 102, 102);
           }
           p {
             margin: 0;
@@ -184,13 +184,16 @@
       cursor: pointer;
       width: 50%;
       padding: 6px;
+      margin-bottom: 6px;
 
       @include breakpoint(md) {
         width: 230px;
+        margin-bottom: 8px;
       }
       @include breakpoint(lg) {
         width: 254px;
         padding: 12px;
+        margin-bottom: 10px;
       }
 
       &:hover {
@@ -200,11 +203,14 @@
       }
       .wrap {
         overflow: hidden;
-        height: 120px;
+        height: 110px;
         position: relative;
         margin-bottom: 6px;
         border-radius: 6px;
 
+        @include breakpoint(md) {
+          height: 120px;
+        }
         @include breakpoint(lg) {
           margin-bottom: 12px;
           height: 160px;
@@ -214,7 +220,7 @@
           position: absolute;
           width: 100%;
           height: 100%;
-          background-color: black;
+          background-color: $grey;
           background-image: url("/src/assets/images/image1.png");
           background-position: center;
           background-size: cover;
@@ -241,13 +247,21 @@
       }
       .food-title {
         h6 {
-          font-size: 16px;
+          font-size: 13px;
           font-weight: 500;
           color: $dark;
           display: -webkit-box;
           -webkit-line-clamp: 2;
           -webkit-box-orient: vertical;
           overflow: hidden;
+          margin: 0;
+
+          @include breakpoint(md) {
+            font-size: 15px;
+          }
+          @include breakpoint(lg) {
+            font-size: 16px;
+          }
         }
       }
     }
@@ -272,6 +286,55 @@
 
       @include breakpoint(lg) {
         padding: 15px 37px;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+.ending {
+  padding: 40px 0;
+
+  @include breakpoint(md) {
+    padding: 50px 0 60px;
+  }
+  @include breakpoint(lg) {
+    padding: 80px 0 150px;
+  }
+
+  &__image {
+    text-align: center;
+    img {
+      width: 90%;
+
+      @include breakpoint(md) {
+        width: 100%;
+      }
+    }
+  }
+  &__text {
+    text-align: center;
+    @include breakpoint(md) {
+      text-align: left;
+    }
+    h2 {
+      font-weight: bold;
+      margin-top: 26px;
+      font-size: 24px;
+
+      @include breakpoint(lg) {
+        font-size: 38px;
+      }
+    }
+    p {
+      font-weight: 300;
+      font-size: 13px;
+
+      @include breakpoint(md) {
+        font-size: 14px;
+      }
+
+      @include breakpoint(lg) {
         font-size: 16px;
       }
     }

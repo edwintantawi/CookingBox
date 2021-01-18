@@ -1,4 +1,4 @@
-import { mobileNav, toggler, navLink, mobileLink, darkness, body } from './dom.js';
+import { mobileNav, toggler, navLink, mobileLink, darkness, body, footerYears } from './dom.js';
 import { renderPage, route } from './router.js';
 // navbar toggle
 toggler.addEventListener('click', ()=>{
@@ -61,14 +61,13 @@ function changeState(){
   darkness.classList.toggle('show');
   body.classList.toggle('stuck');
 }
-// on scroll smallest navbar in desktop
-// document.addEventListener('scroll', () => {
-//   const position = window.pageYOffset;
 
-//   if( position > 200 ){
-//     navbar.classList.add('smallest');
-//   } else {
-//     navbar.classList.remove('smallest')
-//   }
+// copyright
+const firstYears = 2021;
+const nowYears =  new Date().getFullYear();
 
-// });
+if( firstYears === nowYears ){
+  footerYears.innerHTML = nowYears;
+} else {
+  footerYears.innerHTML = `${firstYears} - ${nowYears}`;
+}
