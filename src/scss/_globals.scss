@@ -11,7 +11,9 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  // height: 9999px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
   // background-color: $yellow;
   &.stuck {
     overflow: hidden;
@@ -19,6 +21,7 @@ body {
 }
 #root {
   padding-top: 59px;
+  flex: 1;
   @include breakpoint(lg) {
     padding-top: 69px;
   }
