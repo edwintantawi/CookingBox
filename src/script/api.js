@@ -16,6 +16,8 @@ checkRandomList().then(data => {
   } else {
     console.log("You are Up to date");
   }
+}).catch(error => {
+  console.log("all recipes are saved")
 })
 
 export function getRandomFoods(){

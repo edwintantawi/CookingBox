@@ -1,0 +1,12 @@
+{
+  "name": "CookingBox",
+  "version": "1.0.0",
+  "description": "Food Recipes Website",
+  "main": "service-worker.js",
+  "scripts": {
+    "purge:bt": "purgecss --css src/css/bootstrap.css --content **/*.html \"src/**/*.js\" --output dist/"
+  },
+  "keywords": [],
+  "author": "edwintantawi",
+  "license": "ISC"
+}

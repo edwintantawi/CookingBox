@@ -6,6 +6,7 @@
 - CSS3
 - Javascript
 - Bootstrap 5
+- PurgeCss
 - Sass
 - PWA
 - WorkBox
