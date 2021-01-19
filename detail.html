@@ -135,8 +135,7 @@
             }
           }
 
-          console.log(ingredients)
-
+          const instructions = dataMeal.strInstructions.replace(/\n/g, "<br>");
           placeHolder.innerHTML = `
           <div class="detail__image" style="background-image:url(${dataMeal.strMealThumb});">
             <div class="label">
@@ -178,14 +177,14 @@
             <div class="instructions">
               <h3>Instructions</h3>
               <p>
-               ${dataMeal.strInstructions}
+               ${instructions}
               </p>
             </div>  
             </div>
           </div>
           `;
         }
-
+     
       }catch(error){
         console.log(error)
       }

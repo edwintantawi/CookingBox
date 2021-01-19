@@ -246,14 +246,14 @@
       }
 
       p {
-        text-indent: 30px;
+        // text-indent: 30px;
         margin-left: 30px;
         font-size: 13px;
         @include breakpoint(md) {
           font-size: 16px;
         }
         @include breakpoint(xl) {
-          text-indent: 60px;
+          // text-indent: 60px;
           margin-left: 60px;
           font-size: 18px;
         }

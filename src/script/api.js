@@ -1,5 +1,5 @@
-
-// TheMealDB
+// import { saveRandomList } from './db.js';
+// TheMealDB 
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
 let numRandomFood = 20;
@@ -7,7 +7,6 @@ let countFood = 0;
 let foodDatas = [];
 
 export async function getRandomFoods(){
-  
   try {
     while(countFood < numRandomFood){
       const response = await fetch(`${BASE_URL}/random.php`);
@@ -25,6 +24,7 @@ export async function getRandomFoods(){
           }
           if(notSame){
             foodDatas.push(responseJson.meals[0]);
+            // saveRandomList(responseJson.meals[0]);
             countFood += 1;
         }
       }
@@ -48,7 +48,7 @@ function renderRandomFoods(foods){
     showMore.style.visibility = 'visible';
     foodList.innerHTML += `
     <div class="list__child__card">
-    <a href="/src/pages/detail.html?id=${food.idMeal}">
+    <a href="/detail.html?id=${food.idMeal}">
     <div class="wrap">
     <div class="picture"  style="background-image: url(${food.strMealThumb});" loading="lazy">
     </div>

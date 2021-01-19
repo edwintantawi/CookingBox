@@ -6,3 +6,4 @@ import './router.js';
 import './action.js';
 import './api.js';
 import '../idb/idb.js';
+import './db.js';
