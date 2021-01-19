@@ -19,9 +19,6 @@ export function renderPage(route){
         if( route === 'home' ){
           homePage();
         }
-        if( route === 'detail' ){
-          footer.style.display = 'none';
-        }
       } else if( this.status === 404 ){
         root.innerHTML = "<h1><center>ERROR 404 Page Not Found</center></h1>"
       } else {

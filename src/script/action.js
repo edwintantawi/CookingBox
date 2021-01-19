@@ -16,10 +16,6 @@ navLink.forEach(link => {
         linkState('home');
         footer.style.display = 'block';
         break;
-        // case 'Search By':
-        // renderPage('home');
-        // linkState('home');
-        // break;
         case 'Collections':
         renderPage(linkRoute);
         linkState('collections');
@@ -35,8 +31,6 @@ navLink.forEach(link => {
     }
   });
 });
-
-
 
 // active link
 export function linkState(route){
@@ -56,6 +50,7 @@ mobileLink.forEach(link => {
   });
 });
 
+// state of navigation
 function changeState(){
   toggler.classList.toggle('change');
   mobileNav.classList.toggle('show');

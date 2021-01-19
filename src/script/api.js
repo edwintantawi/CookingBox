@@ -1,3 +1,4 @@
+
 // TheMealDB
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
@@ -47,7 +48,7 @@ function renderRandomFoods(foods){
     showMore.style.visibility = 'visible';
     foodList.innerHTML += `
     <div class="list__child__card">
-    <a href="#">
+    <a href="/src/pages/detail.html?id=${food.idMeal}">
     <div class="wrap">
     <div class="picture"  style="background-image: url(${food.strMealThumb});" loading="lazy">
     </div>
