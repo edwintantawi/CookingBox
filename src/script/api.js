@@ -3,21 +3,11 @@ const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
 let numRandomFood = 20;
 let countFood = 0;
+let foodDatas = [];
 
 export async function getRandomFoods(){
   
   try {
-    let foodList = [];
-    // for( let i = 1; i <= numRandomFood; i++ ){
-    //   const response = await fetch(`${BASE_URL}/random.php`);
-    //   const responseJson = await response.json();
-      
-    //   if( responseJson.error ){
-    //     console.error(responseJson.message)
-    //   } else {
-    //     foodList.push(responseJson.meals[0]);
-    //   }
-    // }
     while(countFood < numRandomFood){
       const response = await fetch(`${BASE_URL}/random.php`);
       const responseJson = await response.json();
@@ -25,24 +15,20 @@ export async function getRandomFoods(){
       if( responseJson.error ){
         console.error(responseJson.message)
       } else {
-        if( countFood === 0 ){
-          foodList.push(responseJson.meals[0]);
-          countFood += 1;
-        }else{
-          let isSame = false;
-          for(let i = 0; i < foodList.length; i++ ){
-            if(responseJson.meals[0].idMeal === foodList[i] ){
-              isSame = true;
+
+          let notSame = true;
+          for(let i = 0; i < foodDatas.length; i++ ){
+            if(responseJson.meals[0].idMeal === foodDatas[i].idMeal ){
+              notSame = false;
             }
           }
-          if(isSame == false){
-            foodList.push(responseJson.meals[0]);
-              countFood += 1;
-          }
+          if(notSame){
+            foodDatas.push(responseJson.meals[0]);
+            countFood += 1;
         }
       }
     }
-    renderRandomFoods(foodList);
+    renderRandomFoods(foodDatas);
     countFood = 0;
     
   } catch (error) {
@@ -52,13 +38,14 @@ export async function getRandomFoods(){
 }
 
 function renderRandomFoods(foods){
-  const FoodList = document.querySelector('#render-food');
+  const foodList = document.querySelector('#render-food');
+  foodList.innerHTML = '';
   const loader = document.querySelector('.loader');
   const showMore = document.querySelector('.btn-show-more');
   for(let food of foods){
     loader.style.display = 'none';
     showMore.style.visibility = 'visible';
-    FoodList.innerHTML += `
+    foodList.innerHTML += `
     <div class="list__child__card">
     <a href="#">
     <div class="wrap">
