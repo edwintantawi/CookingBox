@@ -1,12 +1,35 @@
-// import { saveRandomList } from './db.js';
+import { saveRandomList,resetRandomList,checkRandomList,updateRandomFoodList } from './db.js';
 // TheMealDB 
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
 let numRandomFood = 20;
 let countFood = 0;
 let foodDatas = [];
+// let randomFoodValidation = [];
 
-export async function getRandomFoods(){
+const nowDate = new Date().getDate();
+const nowMonth = new Date().getMonth();
+checkRandomList().then(data => {
+  console.log(data.createDate);
+  if( data.createDate[0] > nowDate || data.createDate[1] > nowMonth ){
+    resetRandomList(1);
+  } else {
+    console.log("You are Up to date");
+  }
+})
+
+export function getRandomFoods(){
+    checkRandomList().then(data => {
+        foodDatas = data.data;
+        renderRandomFoods(foodDatas);
+        console.log("im resolve")
+      }).catch(error => {
+        console.log(error);
+        getRandomFoodFromServer();
+      });
+}
+ 
+async function getRandomFoodFromServer(update = false){
   try {
     while(countFood < numRandomFood){
       const response = await fetch(`${BASE_URL}/random.php`);
@@ -24,19 +47,36 @@ export async function getRandomFoods(){
           }
           if(notSame){
             foodDatas.push(responseJson.meals[0]);
-            // saveRandomList(responseJson.meals[0]);
             countFood += 1;
         }
       }
     }
     renderRandomFoods(foodDatas);
-    countFood = 0;
+    if( update ){
+      console.log("update")
+      checkRandomList().then(data => {
+        updateRandomFoodList({randomId: 1, createDate: [data.createDate[0],data.createDate[1]], data: foodDatas});
+        countFood = 0;
+      });
+    } else {
+      const nowDate = new Date().getDate();
+      const nowMonth = new Date().getMonth();
+      saveRandomList({randomId: 1, createDate: [nowDate,nowMonth], data: foodDatas});
+      countFood = 0;
+      console.log("new")
+    }
     
   } catch (error) {
     console.log(error);
   }
   
 }
+  
+export async function getMoreRandomFoods(){
+  // resetRandomList(1);
+  getRandomFoodFromServer(true);
+}
+
 
 function renderRandomFoods(foods){
   const foodList = document.querySelector('#render-food');

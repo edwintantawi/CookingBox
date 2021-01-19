@@ -1,4 +1,3 @@
-// WorkBox
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js');
 
 workbox ? console.log("WorkBox is Success!") : console.error("WorkBox is Failed!");
@@ -6,15 +5,21 @@ workbox ? console.log("WorkBox is Success!") : console.error("WorkBox is Failed!
 workbox.precaching.precacheAndRoute([
   {url: "/", revision: "1"},
   {url: "/index.html", revision: "1"},
+  {url: "/detail.html", revision: "1"},
   {url: "/manifest.json", revision: "1"},
   {url: "/browserconfig.xml", revision: "1"},
   {url: "/favicon.ico", revision: "1"},
-  {url: "/detail.html", revision: "1"},
-]);
+  {url: "/service-worker.js", revision: "1"},
+  {url: "/src/idb/idb.js", revision: "1"},
+  {url: "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js", revision: "1"},
+  {url: "https://use.fontawesome.com/releases/v5.15.1/css/all.css", revision: "1"},
+],{
+  ignoreUrlParametersMatching: [/.*/],
+});
 
 // pages
 workbox.routing.registerRoute(
-  new RegExp('/src/pages/'),
+  /\.(?:html)$/,
   workbox.strategies.staleWhileRevalidate(
     {cacheName: 'pages'}
   )
@@ -36,21 +41,18 @@ workbox.routing.registerRoute(
 );
 
 // api
-// workbox.routing.registerRoute(
-//   new RegExp("https://www.themealdb.com/"),
-//   workbox.strategies.staleWhileRevalidate({
-//     cacheName: 'TheMealDB-API'
-// })
-// )
-// workbox.routing.registerRoute(
-//   new RegExp("/src/script/foodDatas.js"),
-//   workbox.strategies.cacheFirst({
-//     cacheName: 'TheMealDB-API'
-// })
-// )
+workbox.routing.registerRoute(
+  new RegExp("https://www.themealdb.com/api/json/v1/1/lookup.php"),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'TheMealDB-Detail-API'
+})
+)
+
 
 // image
 workbox.routing.registerRoute(
   /\.(?:png|gif|jpg|jpeg|svg)$/,
-  workbox.strategies.cacheFirst()
+  workbox.strategies.cacheFirst({
+    cacheName: "images"
+  })
 );

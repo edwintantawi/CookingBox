@@ -1,48 +1,68 @@
-// const dbPromised = idb.open("CookingBox", 1, function(upgradeDb){
-//   const standingsObjectStore = upgradeDb.createObjectStore("CookingBoxRandom", {
-//     keyPath: "idMeal"
-//   });
-//   standingsObjectStore.createIndex("idMeal", "idMeal", {unique: false});
-// });
 
-// // save random list
-// export const saveRandomList = random =>{
-//   dbPromised
-//     .then(function(db){
-//       const tx = db.transaction('CookingBoxRandom', 'readwrite');
-//       const store = tx.objectStore('CookingBoxRandom');
-//       store.add(random);
-//       return tx.complete;
-//   })
-// };
+const dbPromised = idb.open("CookingBox", 1, function(upgradeDb){
+  const randomFoodObjectStore = upgradeDb.createObjectStore("CookingBoxRandom", {
+    keyPath: "randomId"
+  });
+  const collectionFoodObjectStore = upgradeDb.createObjectStore("CookingBoxCollection", {
+    keyPath: "idMeal"
+  });
+  randomFoodObjectStore.createIndex("randomId", "randomId", {unique: true});
+  collectionFoodObjectStore.createIndex("idMeal", "idMeal", {unique: true});
+});
 
-// const removeFromBookmark = id => {
-//   dbPromised
-//     .then(function(db){
-//       const tx = db.transaction('standings', 'readwrite');
-//       const store = tx.objectStore('standings');
-//       store.delete(id);
-//       return tx.complete;
-//     });
-// }
+// save random list
+export const saveRandomList = randomList =>{
+  dbPromised
+    .then(function(db){
+      const tx = db.transaction('CookingBoxRandom', 'readwrite');
+      const store = tx.objectStore('CookingBoxRandom');
+      store.add(randomList);
+      return tx.complete;
+  })
+};
 
-// const checkBookmarked = id =>{
-//   dbPromised
-//     .then(function(db){
-//       const tx = db.transaction('standings', 'readonly');
-//       const store = tx.objectStore('standings');
-//       return store.getAll();
-//     })
-//     .then(function(standings){
-//       standings.forEach(function(standing){
-//         if(standing.team.id == id){
-//           const btnBookmark = document.querySelector(`[data-id='${id}']`);
-//           btnBookmark.innerHTML = "bookmark"
-//         }
- 
-//       });
-//     })
-// }
+export const resetRandomList = id => {
+  dbPromised
+    .then(function(db){
+      const tx = db.transaction('CookingBoxRandom', 'readwrite');
+      const store = tx.objectStore('CookingBoxRandom');
+      store.delete(id);
+      return tx.complete;
+    });
+}
+
+export const checkRandomList = () =>{
+  return new Promise((resolve, reject) => {
+    dbPromised
+    .then(function(db){
+      const tx = db.transaction('CookingBoxRandom', 'readonly');
+      const store = tx.objectStore('CookingBoxRandom');
+      return store.getAll();
+    })
+    .then(function(randomList){
+      if( randomList ){
+        randomList.forEach(function(random){
+          //  callback(random.data);
+           if (random) {
+             resolve(random)
+           }
+  
+        });
+      }
+      reject("empty")
+    })
+  });
+}
+
+export const updateRandomFoodList = data => {
+  dbPromised
+    .then(function(db){
+      const tx = db.transaction('CookingBoxRandom', 'readwrite');
+      const store = tx.objectStore('CookingBoxRandom');
+      store.put(data);
+      return tx.complete;
+    });
+};
 
 // const getSavedBookmark = () => {
 //   dbPromised

@@ -85,27 +85,23 @@
   <!-- <script src="/src/script/main.js" type="module"></script> -->
    <!-- service worker -->
   <script>
-  const registerServiceWorker = () => {
-    return navigator.serviceWorker.register("/service-worker.js")
-    .then(registration => {
-      console.log('Register Service Worker is Success!');
-      return registration;
-    })
-    .catch(error => {
-      console.error(`Register Service Worker is Failed, Error: ${error}`);
-    });
-  };
-  // check browser service worker
-  if( 'serviceWorker' in navigator ){
-    // register service worker
-    registerServiceWorker();
-  }else{
-    console.log('Your Browser Doesn\'t Support Service Worker!');
-  } 
-  </script>
+  if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+            navigator.serviceWorker
+                .register("/service-worker.js")
+                .then(function() {
+                console.log("Pendaftaran ServiceWorker berhasil");
+            })
+                .catch(function() {
+                console.log("Pendaftaran ServiceWorker gagal");
+            });
+        });
+    } else {
+        console.log("ServiceWorker belum didukung browser ini.");
+    }
 
-  <script>
-    const URL_PARAMS = new URLSearchParams(window.location.search);
+    document.addEventListener('DOMContentLoaded', () => {
+      const URL_PARAMS = new URLSearchParams(window.location.search);
     const MEAL_ID = URL_PARAMS.get("id");
     const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
     const placeHolder = document.querySelector('.detail');
@@ -189,6 +185,7 @@
         console.log(error)
       }
     }
+    })
 
 
   </script>

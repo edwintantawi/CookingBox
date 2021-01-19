@@ -1,6 +1,6 @@
 import { mobileNav, toggler, navLink, mobileLink, darkness, body, footerYears, footer } from './dom.js';
 import { renderPage } from './router.js';
-import { getRandomFoods } from './api.js';
+import { getMoreRandomFoods, getRandomFoods } from './api.js';
 // navbar toggle
 toggler.addEventListener('click', ()=>{
   changeState();
@@ -74,7 +74,7 @@ export function homePage(){
   const showMoreBtn = document.querySelector('.btn-show-more');
   const loader = document.querySelector('.loader');
   showMoreBtn.addEventListener('click', () => {
-    getRandomFoods();
+    getMoreRandomFoods();
     loader.style.display = 'flex';
   });
 }
