@@ -1,6 +1,6 @@
 import { navLink, mobileLink, footerYears, footer } from './dom.js';
 import { renderPage } from './router.js';
-import { getMoreRandomFoods, getRandomFoods } from './api.js';
+import { getMoreRandomFoods, getRandomFoods, searchFoodByName } from './api.js';
 // navbar toggle
 // toggler.addEventListener('click', ()=>{
 //   changeState();
@@ -77,5 +77,33 @@ export function homePage(){
     getMoreRandomFoods();
     loader.style.display = 'flex';
   });
-}
 
+  // search
+  const searchInput = document.querySelector('#search-input');
+  const searchFilter = document.querySelector('#search-filter');
+  const searchResetLogo = document.querySelector('.search-reset-logo');
+  const filterSection = document.querySelector('.list__filter');
+  console.log(filterSection)
+
+  searchInput.addEventListener('keyup', () => {
+    if( searchInput.value === '' || searchInput.value === ' '|| searchInput.value === null ){
+      getRandomFoods();
+      searchResetLogo.style.visibility = 'hidden';
+    } else {
+      searchFoodByName(searchInput.value);
+      searchResetLogo.style.visibility = 'visible';
+    }
+  });
+  
+  searchResetLogo.addEventListener('click', () => {
+    searchInput.value = '';
+    getRandomFoods();
+    searchResetLogo.style.visibility = 'hidden';
+  });
+
+  // filter
+  searchFilter.addEventListener('click', () => {
+    filterSection.classList.toggle('show');
+  });
+
+}

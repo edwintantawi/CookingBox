@@ -9,9 +9,11 @@ let foodDatas = [];
 
 const nowDate = new Date().getDate();
 const nowMonth = new Date().getMonth();
+console.log(nowDate)
+console.log(nowMonth)
 checkRandomList().then(data => {
   console.log(data.createDate);
-  if( data.createDate[0] > nowDate || data.createDate[1] > nowMonth ){
+  if( data.createDate[0] < nowDate || data.createDate[1] < nowMonth ){
     resetRandomList(1);
   } else {
     console.log("You are Up to date");
@@ -104,5 +106,32 @@ function renderRandomFoods(foods){
     </a>
     </div>
     `;
+  }
+}
+
+
+// search by name
+export async function searchFoodByName(id){
+  try {
+    const response = await fetch(`${BASE_URL}/search.php?s=${id}`);
+    const responseJson = await response.json();
+
+    if( responseJson.error ){
+      console.log(responseJson.message);
+    } else {
+      // foodSearchDatas.push(...responseJson.meals);
+      console.log(responseJson)
+      if( responseJson.meals === null ){
+        const foodList = document.querySelector('#render-food');
+        foodList.innerHTML = `
+          <center><p>Food with the name <b>"${id}"</b> was not found</p></center>
+        `;
+      }else {
+        renderRandomFoods(responseJson.meals);
+      }
+    }
+
+  } catch (error) {
+    console.error(error);
   }
 }
