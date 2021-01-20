@@ -83,7 +83,6 @@ export function homePage(){
   const searchFilter = document.querySelector('#search-filter');
   const searchResetLogo = document.querySelector('.search-reset-logo');
   const filterSection = document.querySelector('.list__filter');
-  console.log(filterSection)
 
   searchInput.addEventListener('keyup', () => {
     if( searchInput.value === '' || searchInput.value === ' '|| searchInput.value === null ){

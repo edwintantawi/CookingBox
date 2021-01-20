@@ -82,14 +82,19 @@ export async function getMoreRandomFoods(){
 }
 
 
-function renderRandomFoods(foods){
+function renderRandomFoods(foods, search = false){
   const foodList = document.querySelector('#render-food');
   foodList.innerHTML = '';
   const loader = document.querySelector('.loader');
   const showMore = document.querySelector('.btn-show-more');
-  for(let food of foods){
+  if( search ){
+    loader.style.display = 'none';
+    showMore.style.visibility = 'hidden';
+  } else {
     loader.style.display = 'none';
     showMore.style.visibility = 'visible';
+  }
+  for(let food of foods){
     foodList.innerHTML += `
     <div class="list__child__card">
     <a href="/detail.html?id=${food.idMeal}">
@@ -127,7 +132,7 @@ export async function searchFoodByName(id){
           <center><p>Food with the name <b>"${id}"</b> was not found</p></center>
         `;
       }else {
-        renderRandomFoods(responseJson.meals);
+        renderRandomFoods(responseJson.meals, true);
       }
     }
 
