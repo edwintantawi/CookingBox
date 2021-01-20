@@ -370,6 +370,10 @@ button:not(:disabled),
   border: 0 !important;
 }
 
+.d-block {
+  display: block !important;
+}
+
 .d-flex {
   display: flex !important;
 }
@@ -395,15 +399,19 @@ button:not(:disabled),
 }
 @media (min-width: 768px) {
 
+  .d-md-block {
+    display: block !important;
+  }
+
+  .d-md-none {
+    display: none !important;
+  }
+
   .order-md-2 {
     order: 2 !important;
   }
 }
 @media (min-width: 992px) {
-
-  .d-lg-block {
-    display: block !important;
-  }
 
   .d-lg-none {
     display: none !important;

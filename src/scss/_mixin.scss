@@ -4,7 +4,7 @@
       @content;
     }
   } @else if $size==md {
-    @media (min-width: 576px) {
+    @media (min-width: 758px) {
       @content;
     }
   } @else if $size==lg {

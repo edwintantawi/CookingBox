@@ -49,11 +49,16 @@
         <img src="/src/assets/logo/logo-full.svg" alt="CookingBox">
       </a>
       <!-- navigation -->
-      <div class="navbar__navigation">
+      <div class="navbar__navigation d-none d-md-block">
         <a href="/index.html" class="navlink"><i class="fas fa-angle-left"></i> Back</a>
       </div>
     </div>
   </nav>
+  <div class="navbar__mobile__navigation_detail d-block d-md-none" >
+    <div class="wrap">
+      <a href="/index.html" class="navlink active"><i class="fas fa-level-up-alt"></i>Back</a>
+    </div>
+  </div>
   <!-- darkness -->
   <div class="darkness"></div>
   <!-- END APP SHELL: Navbar -->
@@ -63,28 +68,6 @@
 </main>
 
 
-
-
-
-  <!-- START APP SHELL: Footer -->
-  <!-- <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <img src="/src/assets/logo/logo-min.svg" alt="CookingBox" class="footer__brand">
-          <p class="footer__copyright">
-            copyright &copy; <span class="footer__copyright__years"></span> <span class="uniq">CookingBox</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer> -->
-  <!-- Footer APP SHELL: Footer -->
-
-
-  <!-- START : script -->
-  <!-- <script src="/src/script/main.js" type="module"></script> -->
-   <!-- service worker -->
   <script>
   if ("serviceWorker" in navigator) {
         window.addEventListener("load", function() {

@@ -1,10 +1,10 @@
-import { mobileNav, toggler, navLink, mobileLink, darkness, body, footerYears, footer } from './dom.js';
+import { navLink, mobileLink, footerYears, footer } from './dom.js';
 import { renderPage } from './router.js';
 import { getMoreRandomFoods, getRandomFoods } from './api.js';
 // navbar toggle
-toggler.addEventListener('click', ()=>{
-  changeState();
-});
+// toggler.addEventListener('click', ()=>{
+//   changeState();
+// });
 
 // navigation link
 navLink.forEach(link => {
@@ -51,12 +51,12 @@ mobileLink.forEach(link => {
 });
 
 // state of navigation
-function changeState(){
-  toggler.classList.toggle('change');
-  mobileNav.classList.toggle('show');
-  darkness.classList.toggle('show');
-  body.classList.toggle('stuck');
-}
+// function changeState(){
+//   toggler.classList.toggle('change');
+//   mobileNav.classList.toggle('show');
+//   darkness.classList.toggle('show');
+//   body.classList.toggle('stuck');
+// }
 
 // copyright
 const firstYears = 2021;
