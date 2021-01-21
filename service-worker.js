@@ -2,6 +2,10 @@ importScripts('https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox
 
 workbox ? console.log("WorkBox is Success!") : console.error("WorkBox is Failed!");
 
+self.addEventListener('install', event => {
+  self.skipWaiting();
+});
+
 workbox.precaching.precacheAndRoute([
   {url: "/", revision: "1"},
   {url: "/index.html", revision: "1"},
@@ -10,7 +14,6 @@ workbox.precaching.precacheAndRoute([
   {url: "/manifest.json", revision: "1"},
   {url: "/browserconfig.xml", revision: "1"},
   {url: "/favicon.ico", revision: "1"},
-  {url: "/service-worker.js", revision: "1"},
   {url: "/src/idb/idb.js", revision: "1"},
   {url: "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js", revision: "1"},
   {url: "https://use.fontawesome.com/releases/v5.15.1/css/all.css", revision: "1"},
@@ -41,13 +44,29 @@ workbox.routing.registerRoute(
   })
 );
 
-// api
+// api detail
 workbox.routing.registerRoute(
   new RegExp("https://www.themealdb.com/api/json/v1/1/lookup.php"),
   workbox.strategies.staleWhileRevalidate({
     cacheName: 'TheMealDB-Detail-API'
 })
-)
+);
+
+// api filter
+workbox.routing.registerRoute(
+  new RegExp("https://www.themealdb.com/api/json/v1/1/list.php"),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'TheMealDB-Filter-API'
+})
+);
+
+// api filter images
+workbox.routing.registerRoute(
+  new RegExp("https://www.themealdb.com/images/Category"),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'TheMealDB-Images-API'
+})
+);
 
 
 // image

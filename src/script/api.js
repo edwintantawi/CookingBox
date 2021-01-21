@@ -9,10 +9,8 @@ let foodDatas = [];
 
 const nowDate = new Date().getDate();
 const nowMonth = new Date().getMonth();
-console.log(nowDate)
-console.log(nowMonth)
+
 checkRandomList().then(data => {
-  console.log(data.createDate);
   if( data.createDate[0] < nowDate || data.createDate[1] < nowMonth ){
     resetRandomList(1);
   } else {
@@ -26,7 +24,6 @@ export function getRandomFoods(){
     checkRandomList().then(data => {
         foodDatas = data.data;
         renderRandomFoods(foodDatas);
-        console.log("im resolve")
       }).catch(error => {
         console.log(error);
         getRandomFoodFromServer();
@@ -57,7 +54,6 @@ async function getRandomFoodFromServer(update = false){
     }
     renderRandomFoods(foodDatas);
     if( update ){
-      console.log("update")
       checkRandomList().then(data => {
         updateRandomFoodList({randomId: 1, createDate: [data.createDate[0],data.createDate[1]], data: foodDatas});
         countFood = 0;
@@ -67,7 +63,6 @@ async function getRandomFoodFromServer(update = false){
       const nowMonth = new Date().getMonth();
       saveRandomList({randomId: 1, createDate: [nowDate,nowMonth], data: foodDatas});
       countFood = 0;
-      console.log("new")
     }
     
   } catch (error) {
@@ -82,7 +77,7 @@ export async function getMoreRandomFoods(){
 }
 
 
-function renderRandomFoods(foods, search = false){
+function renderRandomFoods(foods, search = false, filter = null){
   const foodList = document.querySelector('#render-food');
   foodList.innerHTML = '';
   const loader = document.querySelector('.loader');
@@ -102,7 +97,7 @@ function renderRandomFoods(foods, search = false){
     <div class="picture"  style="background-image: url(${food.strMealThumb});" loading="lazy">
     </div>
     <div class="label">
-    ${food.strCategory}
+    ${filter || food.strCategory}
     </div>
     </div>
     <div class="food-title">
@@ -124,8 +119,6 @@ export async function searchFoodByName(id){
     if( responseJson.error ){
       console.log(responseJson.message);
     } else {
-      // foodSearchDatas.push(...responseJson.meals);
-      console.log(responseJson)
       if( responseJson.meals === null ){
         const foodList = document.querySelector('#render-food');
         foodList.innerHTML = `
@@ -140,3 +133,86 @@ export async function searchFoodByName(id){
     console.error(error);
   }
 }
+
+// get filter food | search by category
+async function searchFoodByCategory(id, filter = false){
+  try {
+    const response = await fetch(`${BASE_URL}/filter.php?c=${id}`);
+    const responseJson = await response.json();
+
+    if( responseJson.error ){
+      console.log(responseJson.message);
+    } else {
+      if( responseJson.meals === null ){
+        const foodList = document.querySelector('#render-food');
+        foodList.innerHTML = `
+          <center><p>Food with the name <b>"${id}"</b> was not found</p></center>
+        `;
+      }else {
+        renderRandomFoods(responseJson.meals, true, filter ? id : null);
+      }
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// get category food list
+export const  getFilterList = async type => {
+  let filterName;
+  switch(type){
+    case 'c':
+    filterName = 'Category';
+    break;
+    case 'a':
+    filterName = 'Area';
+    break;
+    case 'i':
+    filterName = 'Ingredients';
+    break;
+  }
+  
+  try {
+    const response = await fetch(`${BASE_URL}/list.php?${type}=list`);
+    const responseJson = await response.json();
+
+    if( responseJson.error ){
+      console.log(responseJson.message);
+    }else{
+      renderFilterItem(responseJson.meals, type, filterName)
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const renderFilterItem = (data, type, filterName) => {
+  const filterPlaceholder = document.querySelector(`#${type}`);
+  const filterSection = document.querySelector('.list__filter');
+  const loader = document.querySelector('.loader');
+  const foodList = document.querySelector('#render-food');
+  for( let i of data ){
+    filterPlaceholder.innerHTML += `
+    <div class="list__filter__group__item" id="${i[`str${filterName === 'Ingredients' ? 'Ingredient' : filterName}`]}">
+      <img src="https://www.themealdb.com/images/${filterName}/${i[`str${filterName === 'Ingredients' ? 'Ingredient' : filterName}`]}.png" alt="#">
+      <p>${i[`str${filterName === 'Ingredients' ? 'Ingredient' : filterName}`]}</p>
+    </div>
+    `;
+  }
+  const filterItem = document.querySelectorAll('.list__filter__group__item');
+  filterItem.forEach(item => {
+    item.addEventListener('click', () => {
+      loader.style.display = 'flex';
+      foodList.innerHTML = '';
+      if(item.id === 'random'){
+        getRandomFoods();
+      } else {
+        searchFoodByCategory(item.id, true);
+      }
+      filterSection.classList.toggle('show');
+    });
+  });
+}
+

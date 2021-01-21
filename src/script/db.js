@@ -6,8 +6,12 @@ const dbPromised = idb.open("CookingBox", 1, function(upgradeDb){
   const collectionFoodObjectStore = upgradeDb.createObjectStore("CookingBoxCollection", {
     keyPath: "idMeal"
   });
+  const filterFoodObjectStore = upgradeDb.createObjectStore("CookingBoxFilter", {
+    keyPath: "filterId"
+  });
   randomFoodObjectStore.createIndex("randomId", "randomId", {unique: true});
   collectionFoodObjectStore.createIndex("idMeal", "idMeal", {unique: true});
+  filterFoodObjectStore.createIndex("filterId", "filterId", {unique: true});
 });
 
 // save random list
@@ -20,12 +24,34 @@ export const saveRandomList = randomList =>{
       return tx.complete;
   })
 };
+// save filter list
+export const saveFilterList = filterList =>{
+  dbPromised
+    .then(function(db){
+      const tx = db.transaction('CookingBoxFilter', 'readwrite');
+      const store = tx.objectStore('CookingBoxFilter');
+      store.add(filterList);
+      return tx.complete;
+  })
+};
 
+// delete random list
 export const resetRandomList = id => {
   dbPromised
     .then(function(db){
       const tx = db.transaction('CookingBoxRandom', 'readwrite');
       const store = tx.objectStore('CookingBoxRandom');
+      store.delete(id);
+      return tx.complete;
+    });
+}
+
+// delete filter list
+export const resetFilterList = id => {
+  dbPromised
+    .then(function(db){
+      const tx = db.transaction('CookingBoxFilter', 'readwrite');
+      const store = tx.objectStore('CookingBoxFilter');
       store.delete(id);
       return tx.complete;
     });

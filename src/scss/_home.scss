@@ -195,19 +195,94 @@
   }
   &__filter {
     transition: 300ms;
-    overflow: hidden;
+    overflow: hidden !important;
+    background-color: $grey;
+    border-radius: 8px;
+    padding: 0;
+    margin: 0;
     height: 0;
-    padding: 0 16px;
+
     &.show {
-      height: 40px;
-      width: 100%;
+      padding: 26px 16px;
+      height: fit-content;
+      min-height: 100px;
+      margin-bottom: 8px;
+      @include breakpoint(lg) {
+        padding: 26px 24px;
+      }
     }
 
-    .filter {
-      margin: 0 16px 26px;
-      padding: 20px;
+    &.show ~ hr {
+      display: block;
+      @include breakpoint(lg) {
+        margin: 16px 0 24px;
+      }
+    }
+
+    &__group {
+      margin-bottom: 18px;
+
+      h6 {
+        margin-bottom: 12px;
+        font-size: 16px;
+        @include breakpoint(lg) {
+          font-size: 18px;
+          margin-bottom: 16px;
+        }
+      }
+
+      .wrap {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+        gap: 6px;
+
+        @include breakpoint(md) {
+          grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+          gap: 12px;
+        }
+      }
+
+      &__item {
+        width: 100%;
+        padding: 8px 3px;
+        background-color: white;
+        border-radius: 6px;
+
+        cursor: pointer;
+        @include breakpoint(lg) {
+          padding: 12px;
+        }
+        img {
+          width: 100%;
+          margin-bottom: 3px;
+          object-fit: cover;
+          @include breakpoint(lg) {
+            margin-bottom: 8px;
+          }
+        }
+
+        p {
+          font-size: 9px;
+          margin-bottom: 0;
+          word-break: break-all;
+          text-align: center;
+
+          @include breakpoint(md) {
+            font-size: 15px;
+          }
+          @include breakpoint(lg) {
+            font-size: 14px;
+          }
+        }
+      }
     }
   }
+
+  .filter-divider {
+    display: none;
+    transition: 300ms;
+  }
+
   &__child {
     display: flex;
     flex-wrap: wrap;
@@ -255,7 +330,6 @@
           width: 100%;
           height: 100%;
           background-color: $grey;
-          // background-image: url("/src/assets/images/image1.png");
           background-position: center;
           background-size: cover;
           transition: 500ms;

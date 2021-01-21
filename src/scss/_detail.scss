@@ -206,7 +206,7 @@
     .food-badge {
       display: flex;
       flex-wrap: wrap;
-      margin-bottom: 26px;
+      margin-bottom: 18px;
       span {
         color: $dark;
         background-color: $yellow;
@@ -215,6 +215,7 @@
         font-size: 12px;
         font-weight: normal;
         margin-right: 5px;
+        margin-bottom: 6px;
       }
       @include breakpoint(md) {
         span {

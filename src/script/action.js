@@ -1,6 +1,6 @@
 import { navLink, mobileLink, footerYears, footer } from './dom.js';
 import { renderPage } from './router.js';
-import { getMoreRandomFoods, getRandomFoods, searchFoodByName } from './api.js';
+import { getMoreRandomFoods, getRandomFoods, searchFoodByName, getFilterList } from './api.js';
 // navbar toggle
 // toggler.addEventListener('click', ()=>{
 //   changeState();
@@ -71,6 +71,7 @@ if( firstYears === nowYears ){
 // home page script
 export function homePage(){
   getRandomFoods();
+  getFilterList('c');
   const showMoreBtn = document.querySelector('.btn-show-more');
   const loader = document.querySelector('.loader');
   showMoreBtn.addEventListener('click', () => {
@@ -83,12 +84,15 @@ export function homePage(){
   const searchFilter = document.querySelector('#search-filter');
   const searchResetLogo = document.querySelector('.search-reset-logo');
   const filterSection = document.querySelector('.list__filter');
+  const foodList = document.querySelector('#render-food');
 
   searchInput.addEventListener('keyup', () => {
     if( searchInput.value === '' || searchInput.value === ' '|| searchInput.value === null ){
       getRandomFoods();
       searchResetLogo.style.visibility = 'hidden';
     } else {
+      foodList.innerHTML = '';
+      loader.style.display = 'flex';
       searchFoodByName(searchInput.value);
       searchResetLogo.style.visibility = 'visible';
     }
@@ -104,5 +108,6 @@ export function homePage(){
   searchFilter.addEventListener('click', () => {
     filterSection.classList.toggle('show');
   });
+
 
 }
