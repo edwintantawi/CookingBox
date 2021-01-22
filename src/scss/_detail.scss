@@ -48,6 +48,10 @@
     flex-direction: row;
   }
 
+  .loader {
+    margin: auto;
+  }
+
   &__image {
     min-height: 200px;
     background-color: $grey;
