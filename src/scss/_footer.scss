@@ -3,7 +3,7 @@
   border-top: 1px solid $dark;
   padding: 12px 0 90px;
 
-  @include breakpoint(lg) {
+  @include breakpoint(md) {
     padding: 18px 0;
   }
 
