@@ -50,12 +50,14 @@
 
   &__image {
     min-height: 200px;
-    // height: 360px;
-    background-color: black;
+    background-color: $grey;
     background-position: center;
     background-size: cover;
     position: relative;
 
+    @include breakpoint(md) {
+      min-height: 350px;
+    }
     @include breakpoint(xl) {
       flex: 1;
       height: 100%;

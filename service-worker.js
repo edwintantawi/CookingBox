@@ -52,11 +52,18 @@ workbox.routing.registerRoute(
 })
 );
 
-// api filter
+// api filter list
 workbox.routing.registerRoute(
   new RegExp("https://www.themealdb.com/api/json/v1/1/list.php"),
   workbox.strategies.staleWhileRevalidate({
     cacheName: 'TheMealDB-Filter-API'
+})
+);
+// api filter data
+workbox.routing.registerRoute(
+  new RegExp("https://www.themealdb.com/api/json/v1/1/filter.php"),
+  workbox.strategies.staleWhileRevalidate({
+    cacheName: 'TheMealDB-Filter-data-API'
 })
 );
 

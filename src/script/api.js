@@ -72,7 +72,6 @@ async function getRandomFoodFromServer(update = false){
 }
   
 export async function getMoreRandomFoods(){
-  // resetRandomList(1);
   getRandomFoodFromServer(true);
 }
 
@@ -133,6 +132,7 @@ export async function searchFoodByName(id){
     console.error(error);
   }
 }
+
 
 // get filter food | search by category
 async function searchFoodByCategory(id, filter = false){
