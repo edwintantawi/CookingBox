@@ -7,7 +7,7 @@
   <meta name="keywords"
         content="cookingBox, cooking, food recipes, cook, recipes, recipe, cooking box, box cooking, kitchen, food recipe, how to cook, food, foods, foods recipe, food recipes, recipe food, how to cook">
   <meta name="description"
-        content="LEARN TO COOK FROM HOME LIKE A CHEF, Make the family kitchen like a restaurant kitchen more productive at home by cooking for the family or starting a culinary business. With our recipe recipes!. CookingBox is a website service that provides delicious recipes from several countries. We also support people to enjoy cooking in their homes because it is more economical and healthier. You can also open a culinary business. We are here for those of you who want to cook but are confused about what to cook, start cooking with us for your beloved family.">
+        content="Learn To Cook From Home Like a Chef, Make the family kitchen like a restaurant kitchen more productive at home by cooking for the family or starting a culinary business. With our recipe recipes!. CookingBox is a website service that provides delicious recipes from several countries. We also support people to enjoy cooking in their homes because it is more economical and healthier. You can also open a culinary business. We are here for those of you who want to cook but are confused about what to cook, start cooking with us for your beloved family.">
   <meta http-equiv="X-UA-Compatible" content="IE=7">
   <link rel="apple-touch-icon" sizes="57x57" href="/src/assets/icons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/src/assets/icons/apple-icon-60x60.png">
@@ -28,7 +28,7 @@
   <meta name="theme-color" content="#ffffff">
 
   <meta property="og:title" content="CookingBox">
-  <meta property="og:description" content="CookingBox Foods Recipes"> 
+  <meta property="og:description" content="CookingBox Foods Recipes, service that provides delicious recipes from several countries. We also support people to enjoy cooking in their homes because it is more economical and healthier"> 
   <meta property="og:url" content="https://cookingbox.xyz/detail.html">
   <meta property="og:image" content="/src/assets/icons/maskable_icon_x512.png"> 
   <meta property="og:type" content="article"> 
@@ -126,9 +126,9 @@
             const ogTitle = document.querySelector('meta[property="og:title"]');
             const ogUrl = document.querySelector('meta[property="og:url"]');
             const ogImage = document.querySelector('meta[property="og:image"]');
-            ogTitle.setAttribute('content',`CookingBox - ${dataMeal.strMeal}`)
-            ogUrl.setAttribute('content',`https://cookingbox.xyz/detail.html?id=${dataMeal.idMeal}`)
-            ogImage.setAttribute('content',`${dataMeal.strMealThumb}`)
+            ogTitle.setAttribute('content',`CookingBox - ${dataMeal.strMeal}`);
+            ogUrl.setAttribute('content',`https://cookingbox.xyz/detail.html?id=${dataMeal.idMeal}`);
+            ogImage.setAttribute('content',`${dataMeal.strMealThumb}`);
             
             // ? Loop ingredients
             const ingredients = [];
