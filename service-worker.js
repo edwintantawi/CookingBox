@@ -11,6 +11,7 @@ workbox.precaching.precacheAndRoute([
   {url: "/index.html", revision: "1"},
   {url: "/detail.html", revision: "1"},
   {url: "/src/components/app-nav.js", revision: "1"},
+  {url: "/src/components/app-footer.js", revision: "1"},
   {url: "/manifest.json", revision: "1"},
   {url: "/browserconfig.xml", revision: "1"},
   {url: "/favicon.ico", revision: "1"},

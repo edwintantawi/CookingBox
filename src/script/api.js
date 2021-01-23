@@ -1,118 +1,49 @@
-import { saveRandomList,resetRandomList,checkRandomList,updateRandomFoodList } from './db.js';
-// TheMealDB 
+import { idbAdd, idbDelete, idbGet, idbUpdate } from './db.js';
+// Base Url TheMealDB
 const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
 
+// * --------------------------- START : Init State --------------------------- */
 let numRandomFood = 20;
 let countFood = 0;
-let foodDatas = [];
-// let randomFoodValidation = [];
+let foodArray = [];
 
 const nowDate = new Date().getDate();
 const nowMonth = new Date().getMonth();
 
-checkRandomList().then(data => {
+// ? Check expired data ( reset random food list every 1 day )
+idbGet().then(data => {
   if( data.createDate[0] < nowDate || data.createDate[1] < nowMonth ){
-    resetRandomList(1);
+    idbDelete(1);
   } else {
     console.log("You are Up to date");
   }
-}).catch(error => {
-  console.log("all recipes are saved")
+}).catch(() => {
+  console.log("all recipes are saved");
 })
+// * ---------------------------- END : Init State ---------------------------- */
 
-export function getRandomFoods(){
-    checkRandomList().then(data => {
-        foodDatas = data.data;
-        renderRandomFoods(foodDatas);
-      }).catch(error => {
-        console.log(error);
-        getRandomFoodFromServer();
-      });
+
+
+
+// * -------------------------- START : Main Function ------------------------- */
+export const getRandom = () => {
+  // ? Check IDB, if exist get it, else request it
+  idbGet().then(data => {
+    foodArray = data.data;
+    renderData({datas: foodArray, isSearch: false, filter: null});
+  }).catch(() => {
+    getRandomRequest({isUpdate : false});
+  });
 }
- 
-async function getRandomFoodFromServer(update = false){
+
+export const getRandomMore = () => {
+  // ? Show more random food by request more random
+  getRandomRequest({isUpdate : true});
+}
+
+export const searchByName = async name => {
   try {
-    while(countFood < numRandomFood){
-      const response = await fetch(`${BASE_URL}/random.php`);
-      const responseJson = await response.json();
-      
-      if( responseJson.error ){
-        console.error(responseJson.message)
-      } else {
-
-          let notSame = true;
-          for(let i = 0; i < foodDatas.length; i++ ){
-            if(responseJson.meals[0].idMeal === foodDatas[i].idMeal ){
-              notSame = false;
-            }
-          }
-          if(notSame){
-            foodDatas.push(responseJson.meals[0]);
-            countFood += 1;
-        }
-      }
-    }
-    renderRandomFoods(foodDatas);
-    if( update ){
-      checkRandomList().then(data => {
-        updateRandomFoodList({randomId: 1, createDate: [data.createDate[0],data.createDate[1]], data: foodDatas});
-        countFood = 0;
-      });
-    } else {
-      const nowDate = new Date().getDate();
-      const nowMonth = new Date().getMonth();
-      saveRandomList({randomId: 1, createDate: [nowDate,nowMonth], data: foodDatas});
-      countFood = 0;
-    }
-    
-  } catch (error) {
-    console.log(error);
-  }
-  
-}
-  
-export async function getMoreRandomFoods(){
-  getRandomFoodFromServer(true);
-}
-
-
-function renderRandomFoods(foods, search = false, filter = null){
-  const foodList = document.querySelector('#render-food');
-  foodList.innerHTML = '';
-  const loader = document.querySelector('.loader');
-  const showMore = document.querySelector('.btn-show-more');
-  if( search ){
-    loader.style.display = 'none';
-    showMore.style.visibility = 'hidden';
-  } else {
-    loader.style.display = 'none';
-    showMore.style.visibility = 'visible';
-  }
-  for(let food of foods){
-    foodList.innerHTML += `
-    <div class="list__child__card">
-    <a href="/detail.html?id=${food.idMeal}">
-    <div class="wrap">
-    <div class="picture"  style="background-image: url(${food.strMealThumb});" loading="lazy">
-    </div>
-    <div class="label">
-    ${filter || food.strCategory}
-    </div>
-    </div>
-    <div class="food-title">
-    <h6>${food.strMeal}</h6>
-    </div>
-    </a>
-    </div>
-    `;
-  }
-}
-
-
-// search by name
-export async function searchFoodByName(id){
-  try {
-    const response = await fetch(`${BASE_URL}/search.php?s=${id}`);
+    const response = await fetch(`${BASE_URL}/search.php?s=${name}`);
     const responseJson = await response.json();
 
     if( responseJson.error ){
@@ -121,10 +52,10 @@ export async function searchFoodByName(id){
       if( responseJson.meals === null ){
         const foodList = document.querySelector('#render-food');
         foodList.innerHTML = `
-          <center><p>Food with the name <b>"${id}"</b> was not found</p></center>
+          <center><p>Food with the name <b>"${name}"</b> was not found</p></center>
         `;
       }else {
-        renderRandomFoods(responseJson.meals, true);
+        renderData({datas: responseJson.meals, isSearch: true, filter: false});
       }
     }
 
@@ -133,86 +64,159 @@ export async function searchFoodByName(id){
   }
 }
 
+export const getFilterList = async () => {
 
-// get filter food | search by category
-async function searchFoodByCategory(id, filter = false){
   try {
-    const response = await fetch(`${BASE_URL}/filter.php?c=${id}`);
-    const responseJson = await response.json();
-
-    if( responseJson.error ){
-      console.log(responseJson.message);
-    } else {
-      if( responseJson.meals === null ){
-        const foodList = document.querySelector('#render-food');
-        foodList.innerHTML = `
-          <center><p>Food with the name <b>"${id}"</b> was not found</p></center>
-        `;
-      }else {
-        renderRandomFoods(responseJson.meals, true, filter ? id : null);
-      }
-    }
-
-  } catch (error) {
-    console.error(error);
-  }
-}
-
-// get category food list
-export const  getFilterList = async type => {
-  let filterName;
-  switch(type){
-    case 'c':
-    filterName = 'Category';
-    break;
-    case 'a':
-    filterName = 'Area';
-    break;
-    case 'i':
-    filterName = 'Ingredients';
-    break;
-  }
-  
-  try {
-    const response = await fetch(`${BASE_URL}/list.php?${type}=list`);
+    const response = await fetch(`${BASE_URL}/list.php?c=list`);
     const responseJson = await response.json();
 
     if( responseJson.error ){
       console.log(responseJson.message);
     }else{
-      renderFilterItem(responseJson.meals, type, filterName)
+      renderFilterList(responseJson.meals)
     }
 
   } catch (error) {
     console.log(error);
   }
+
 }
 
-const renderFilterItem = (data, type, filterName) => {
-  const filterPlaceholder = document.querySelector(`#${type}`);
-  const filterSection = document.querySelector('.list__filter');
-  const loader = document.querySelector('.loader');
+const searchByCategory = async ({category, isFilter}) => {
+  try {
+    const response = await fetch(`${BASE_URL}/filter.php?c=${category}`);
+    const responseJson = await response.json();
+
+    if( responseJson.error ){
+      console.log(responseJson.message);
+    } else {
+      if( responseJson.meals === null ){
+        const foodList = document.querySelector('#render-food');
+        foodList.innerHTML = `
+          <center><p>Food with the name <b>"${category}"</b> was not found</p></center>
+        `;
+      }else {
+        renderData({datas: responseJson.meals, isSearch: true, filter: isFilter ? category : null});
+      }
+    }
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// * --------------------------- END : Main Function -------------------------- */
+
+
+
+
+// * ------------------------ START : Utility Function ------------------------ */
+const getRandomRequest = async ({isUpdate}) =>{
+  try {
+    // ? Loop request for get more then 1 random food
+    while(countFood < numRandomFood){
+      const response = await fetch(`${BASE_URL}/random.php`);
+      const responseJson = await response.json();
+      
+      if( responseJson.error ){
+        console.error(responseJson.message) 
+      } else {
+        
+        let twin = false;
+        for(let i = 0; i < foodArray.length; i++ ){
+          // ? Check twin data
+          if(responseJson.meals[0].idMeal === foodArray[i].idMeal ){ twin = true; }
+        }
+        // ? Check if data is not twin
+        if(!twin){
+          // ? Use the data
+          foodArray.push(responseJson.meals[0]);
+          countFood += 1;
+        }
+      }
+    }
+    if( isUpdate ){
+      // ? Update IDB with new Data and same expired date
+      idbGet().then(data => {
+        idbUpdate({id: "random", createDate: [data.createDate[0],data.createDate[1]], data: foodArray});
+        countFood = 0;
+      });
+    } else {
+      // ? Add new IDB with new Date for expired date
+      const nowDate = new Date().getDate();
+      const nowMonth = new Date().getMonth();
+      idbAdd({id: "random", createDate: [nowDate,nowMonth], data: foodArray});
+      countFood = 0;
+    }
+    // ? Render data to HTML
+    renderData({datas: foodArray, isSearch: false, filter: null});
+
+  } catch (error) {
+    console.log(error);
+  }
+  
+}
+const renderData = ({datas, isSearch, filter}) => {
   const foodList = document.querySelector('#render-food');
-  for( let i of data ){
-    filterPlaceholder.innerHTML += `
-    <div class="list__filter__group__item" id="${i[`str${filterName === 'Ingredients' ? 'Ingredient' : filterName}`]}">
-      <img src="https://www.themealdb.com/images/${filterName}/${i[`str${filterName === 'Ingredients' ? 'Ingredient' : filterName}`]}.png" alt="#">
-      <p>${i[`str${filterName === 'Ingredients' ? 'Ingredient' : filterName}`]}</p>
+  foodList.innerHTML = '';
+  const loader = document.querySelector('.loader');
+  const btnShowMore = document.querySelector('.btn-show-more');
+  loader.style.display = 'none';
+  if( isSearch ){
+    btnShowMore.style.display = 'none';
+  } else {
+    btnShowMore.style.display = 'flex';
+  }
+  for(let food of datas){
+    foodList.innerHTML += `
+    <div class="list__child__card">
+      <a href="/detail.html?id=${food.idMeal}">
+      <div class="wrap">
+        <div
+          class="picture"
+          style="background-image: url(${food.strMealThumb});"
+          loading="lazy"></div>
+        <div class="label">
+          ${filter || food.strCategory}
+        </div>
+      </div>
+        <div class="food-title">
+          <h6>${food.strMeal}</h6>
+        </div>
+      </a>
     </div>
     `;
   }
+}
+const renderFilterList = data => {
+
+  const filterPlaceholder = document.querySelector(`#c`);
+  const filterSection = document.querySelector('.list__filter');
+  const loader = document.querySelector('.loader');
+  const foodList = document.querySelector('#render-food');
+  
+  for( let i of data ){
+    filterPlaceholder.innerHTML += `
+    <div class="list__filter__group__item" id="${i.strCategory}">
+    <img src="https://www.themealdb.com/images/Category/${i.strCategory}.png" alt="#">
+    <p>${i.strCategory}</p>
+    </div>
+    `;
+  }
+  
   const filterItem = document.querySelectorAll('.list__filter__group__item');
+  
   filterItem.forEach(item => {
     item.addEventListener('click', () => {
-      loader.style.display = 'flex';
+      loader.style.display = 'flex'
       foodList.innerHTML = '';
       if(item.id === 'random'){
-        getRandomFoods();
+        getRandom();
       } else {
-        searchFoodByCategory(item.id, true);
+        searchByCategory({category: item.id, isFilter: true});
       }
       filterSection.classList.toggle('show');
     });
   });
 }
-
+// * ------------------------- END : Utility Function ------------------------- */

@@ -1,9 +1,10 @@
 // component
 import '../components/app-nav.js';
+import '../components/app-footer.js';
 // util
 import './dom.js';
 import './router.js';
-import './action.js';
-import './api.js';
-import '../idb/idb.js';
+import './actions/action.js';
 import './db.js';
+import './api.js';
+

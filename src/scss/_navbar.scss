@@ -126,7 +126,7 @@
     padding: 0 10px;
     border-radius: 99px;
     background-color: $white;
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.3);
   }
 
   a {
@@ -145,28 +145,5 @@
     &.active {
       font-weight: bold;
     }
-  }
-}
-
-.darkness {
-  position: fixed;
-  height: 100vh;
-  z-index: 8;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.8)
-  );
-  transition: 500ms;
-  opacity: 0;
-  visibility: hidden;
-
-  &.show {
-    opacity: 1;
-    visibility: visible;
   }
 }

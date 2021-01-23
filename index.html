@@ -8,6 +8,7 @@
         content="cookingBox, cooking, food recipes, cook, recipes, recipe, cooking box, box cooking, kitchen, food recipe, how to cook, food, foods, foods recipe, food recipes, recipe food, how to cook">
   <meta name="description"
         content="LEARN TO COOK FROM HOME LIKE A CHEF, Make the family kitchen like a restaurant kitchen more productive at home by cooking for the family or starting a culinary business. With our recipe recipes!. CookingBox is a website service that provides delicious recipes from several countries. We also support people to enjoy cooking in their homes because it is more economical and healthier. You can also open a culinary business. We are here for those of you who want to cook but are confused about what to cook, start cooking with us for your beloved family.">
+  <!-- -------------------------------- icon --------------------------------- -->
   <meta http-equiv="X-UA-Compatible" content="IE=7">
   <link rel="apple-touch-icon" sizes="57x57" href="/src/assets/icons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/src/assets/icons/apple-icon-60x60.png">
@@ -26,48 +27,48 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="msapplication-TileImage" content="/src/assets/icons/ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
-  <!-- bootstrap 5 -->
-  <!-- <link rel="stylesheet" href="src/css/bootstrap.css"> -->
+
+  <meta property="og:title" content="CookingBox">
+  <meta property="og:description" content="Learn To Cook From Home Like s Cheff, service that provides delicious recipes from several countries"> 
+  <meta property="og:url" content="https://cookingbox.xyz/">
+  <meta property="og:image" content="/src/assets/icons/maskable_icon_x512.png"> 
+  <meta property="og:type" content="article"> 
+
+  <!-- ------------------------------ bootstrap ------------------------------ -->
   <link rel="stylesheet" href="dist/bootstrap.css">
-  <!-- css -->
+  <!-- --------------------------------- css --------------------------------- -->
   <link rel="stylesheet" href="src/css/styles.min.css">
-  <!-- fontawesome -->
+  <!-- ----------------------------- fontawesome ----------------------------- -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-  <!-- google fonts -->
+  <!-- ---------------------------- google fonts ----------------------------- -->
   <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- -------------------------------- title -------------------------------- -->
   <title>CookingBox</title>
+
 </head>
+
 <body>
-
-
-  <!-- START APP SHELL: Navbar -->
+  <!-- START APP SHELL : Navbar -->
   <app-nav></app-nav>
-  <!-- END APP SHELL: Navbar -->
+  <!-- END APP SHELL : Navbar -->
+  
+  <!-- START : ROOT -->
+  <main id="root"></main>
+  <!-- END : ROOT -->
 
-  <main id="root">
-    <!-- Content rendering -->
-  </main>
-
-  <!-- START APP SHELL: Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <img src="/src/assets/logo/logo-min.svg" alt="CookingBox" class="footer__brand">
-          <p class="footer__copyright">
-            copyright &copy; <span class="footer__copyright__years"></span> <span class="uniq">CookingBox</span>
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-  <!-- Footer APP SHELL: Footer -->
+  <!-- START APP SHELL : Footer -->
+  <app-footer></app-footer>
+  <!-- Footer APP SHELL : Footer -->
 
   <!-- START : script -->
+  <!-- * IDB -->
   <script src="src/idb/idb.js"></script>
+  
+  <!-- * JS Module -->
   <script src="src/script/main.js" type="module"></script>
-  <!-- service worker -->
+
+  <!-- * service worker -->
   <script>
     const registerServiceWorker = () => {
       return navigator.serviceWorker.register("/service-worker.js")
@@ -85,8 +86,11 @@
       registerServiceWorker();
     }else{
       console.log('Your Browser Doesn\'t Support Service Worker!');
+      alert('Your Browser Doesn\'t Support Service Worker! Some Feature maybe doesn\'t Work');
     } 
-    </script>
+  </script>
   <!-- END : script -->
+
 </body>
+
 </html>

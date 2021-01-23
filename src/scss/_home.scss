@@ -120,14 +120,8 @@
     }
 
     h2 {
-      font-weight: bold;
-      font-size: 24px;
       text-align: center;
       margin-bottom: 20px;
-
-      @include breakpoint(lg) {
-        font-size: 36px;
-      }
     }
     .search-box {
       border: 1px solid black;
@@ -180,7 +174,7 @@
           }
         }
 
-        i.search-reset-logo {
+        i.search-reset {
           cursor: pointer;
           font-size: 22px;
           color: $orange;
@@ -188,6 +182,10 @@
 
           @include breakpoint(lg) {
             font-size: 26px;
+          }
+
+          &.show {
+            visibility: visible;
           }
         }
       }
@@ -376,8 +374,9 @@
   }
 
   .show-more {
-    text-align: center;
     margin-top: 30px;
+    display: flex;
+
     @include breakpoint(lg) {
       margin-top: 50px;
     }
@@ -391,7 +390,8 @@
       color: white;
       font-weight: bold;
       font-size: 14px;
-      visibility: hidden;
+      margin: auto;
+      display: none;
 
       @include breakpoint(lg) {
         padding: 15px 37px;
@@ -427,13 +427,7 @@
       text-align: left;
     }
     h2 {
-      font-weight: bold;
       margin-top: 26px;
-      font-size: 24px;
-
-      @include breakpoint(lg) {
-        font-size: 38px;
-      }
     }
     p {
       font-weight: 300;

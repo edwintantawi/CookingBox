@@ -1,40 +1,48 @@
-
 const dbPromised = idb.open("CookingBox", 1, function(upgradeDb){
+  // START : RandomFood Store
   const randomFoodObjectStore = upgradeDb.createObjectStore("CookingBoxRandom", {
-    keyPath: "randomId"
+    keyPath: "id"
   });
+  // END : RandomFood Store
+
+  // START : Collection Store
   const collectionFoodObjectStore = upgradeDb.createObjectStore("CookingBoxCollection", {
     keyPath: "idMeal"
   });
+  // END : Collection Store
 
-  randomFoodObjectStore.createIndex("randomId", "randomId", {unique: true});
+  // START : Create Index
+  randomFoodObjectStore.createIndex("id", "id", {unique: true});
   collectionFoodObjectStore.createIndex("idMeal", "idMeal", {unique: true});
+  // END : Create Index
 });
 
-// save random list
-export const saveRandomList = randomList =>{
+// START : Add Data
+export const idbAdd = data =>{
   dbPromised
     .then(function(db){
       const tx = db.transaction('CookingBoxRandom', 'readwrite');
       const store = tx.objectStore('CookingBoxRandom');
-      store.add(randomList);
+      store.add(data);
       return tx.complete;
   })
 };
+// END : Add Data
 
-
-// delete random list
-export const resetRandomList = id => {
+// START : Delete Data
+export const idbDelete = id => {
   dbPromised
-    .then(function(db){
-      const tx = db.transaction('CookingBoxRandom', 'readwrite');
-      const store = tx.objectStore('CookingBoxRandom');
-      store.delete(id);
-      return tx.complete;
-    });
+  .then(function(db){
+    const tx = db.transaction('CookingBoxRandom', 'readwrite');
+    const store = tx.objectStore('CookingBoxRandom');
+    store.delete(id);
+    return tx.complete;
+  });
 }
+// END : Delete Data
 
-export const checkRandomList = () =>{
+// START : Get Data
+export const idbGet = () =>{
   return new Promise((resolve, reject) => {
     dbPromised
     .then(function(db){
@@ -45,27 +53,28 @@ export const checkRandomList = () =>{
     .then(function(randomList){
       if( randomList ){
         randomList.forEach(function(random){
-          //  callback(random.data);
-           if (random) {
-             resolve(random)
-           }
-  
+          if (random) {
+            resolve(random)
+          }
         });
       }
       reject("empty")
     })
   });
 }
+// END : Get Data
 
-export const updateRandomFoodList = data => {
+// START : Update Data
+export const idbUpdate = data => {
   dbPromised
-    .then(function(db){
-      const tx = db.transaction('CookingBoxRandom', 'readwrite');
-      const store = tx.objectStore('CookingBoxRandom');
-      store.put(data);
-      return tx.complete;
-    });
+  .then(function(db){
+    const tx = db.transaction('CookingBoxRandom', 'readwrite');
+    const store = tx.objectStore('CookingBoxRandom');
+    store.put(data);
+    return tx.complete;
+  });
 };
+// END : Update Data
 
 // const getSavedBookmark = () => {
 //   dbPromised

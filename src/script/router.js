@@ -1,12 +1,14 @@
-import { root, footer } from './dom.js';
-import { homePage, linkState } from './action.js';
-// get route
+import { root} from './dom.js';
+import { linkState } from './actions/action.js';
+import { homePageAction } from './actions/homePageAction.js';
+
+// ? get route
 export let route = window.location.hash.substr(1) || 'home';
 if(route === 'searchby') route = 'home'
 
 renderPage(route);
 
-// onload active link state
+// ? onload active link state
 linkState(route);
 
 export function renderPage(route){
@@ -17,7 +19,7 @@ export function renderPage(route){
       if( this.status === 200 ){
         root.innerHTML = this.responseText;
         if( route === 'home' ){
-          homePage();
+          homePageAction();
         }
       } else if( this.status === 404 ){
         root.innerHTML = "<h1><center>ERROR 404 Page Not Found</center></h1>"
