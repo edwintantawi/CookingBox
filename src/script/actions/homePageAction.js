@@ -13,7 +13,7 @@ export function homePageAction(){
 
   // init
   getRandom();
-  getFilterList('c');
+  getFilterList();
 
   // show more
   btnShowMore.addEventListener('click', () => {

@@ -13,7 +13,8 @@ const nowMonth = new Date().getMonth();
 // ? Check expired data ( reset random food list every 1 day )
 idbGet().then(data => {
   if( data.createDate[0] < nowDate || data.createDate[1] < nowMonth ){
-    idbDelete(1);
+    idbDelete('random');
+    getRandom();
   } else {
     console.log("You are Up to date");
   }
@@ -205,7 +206,8 @@ const renderFilterList = data => {
   }
   
   const filterItem = document.querySelectorAll('.list__filter__group__item');
-  
+  const btnShowMore = document.querySelector('.btn-show-more');
+
   filterItem.forEach(item => {
     item.addEventListener('click', () => {
       loader.style.display = 'flex'
@@ -216,6 +218,7 @@ const renderFilterList = data => {
         searchByCategory({category: item.id, isFilter: true});
       }
       filterSection.classList.toggle('show');
+      btnShowMore.style.display = 'none';
     });
   });
 }
