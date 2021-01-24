@@ -1,6 +1,7 @@
 // import
 import { getRandomMore, getRandom, searchByName, getFilterList } from '../api.js';
 
+
 export function homePageAction(){
   // DOM
   const searchInput = document.querySelector('#search-input');

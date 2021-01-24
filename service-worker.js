@@ -9,7 +9,7 @@ self.addEventListener('install', event => {
 workbox.precaching.precacheAndRoute([
   {url: "/", revision: "1"},
   {url: "/index.html", revision: "1"},
-  {url: "/detail.html", revision: "1"},
+  {url: "/detail.html", revision: "2"},
   {url: "/src/components/app-nav.js", revision: "1"},
   {url: "/src/components/app-footer.js", revision: "1"},
   {url: "/manifest.json", revision: "1"},
