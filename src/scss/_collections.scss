@@ -1,0 +1,50 @@
+.collections {
+  text-align: center;
+  margin-top: 30px;
+
+  padding: 12px 0 90px;
+
+  @include breakpoint(lg) {
+    margin-top: 90px;
+  }
+
+  .empty-state {
+    img {
+      width: 80%;
+      max-width: 460px;
+      margin: 16px 0;
+
+      @include breakpoint(lg) {
+        margin: 30px 0;
+      }
+    }
+    h3 {
+      font-size: 18px;
+      margin: 0;
+      @include breakpoint(lg) {
+        font-size: 32px;
+      }
+    }
+  }
+
+  p {
+    font-size: 12px;
+    margin-top: 16px;
+    @include breakpoint(lg) {
+      font-size: 18px;
+      margin-top: 18px;
+    }
+  }
+
+  .collections-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 24px 0;
+
+    &.hide {
+      margin: 0;
+      display: none;
+    }
+  }
+}

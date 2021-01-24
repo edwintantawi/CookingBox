@@ -1,6 +1,7 @@
-import { root} from './dom.js';
+import { root, footer } from './dom.js';
 import { linkState } from './actions/action.js';
 import { homePageAction } from './actions/homePageAction.js';
+import { getCollectionList } from './actions/collectionsPageAaction.js';
 
 // ? get route
 export let route = window.location.hash.substr(1) || 'home';
@@ -20,7 +21,15 @@ export function renderPage(route){
         root.innerHTML = this.responseText;
         if( route === 'home' ){
           homePageAction();
+          footer.style.display = 'block';
+        } else {
+          footer.style.display = 'none';
         }
+
+        if( route === 'collections' ){
+          getCollectionList();
+        }
+
       } else if( this.status === 404 ){
         root.innerHTML = "<h1><center>ERROR 404 Page Not Found</center></h1>"
       } else {

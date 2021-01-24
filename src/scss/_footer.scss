@@ -2,6 +2,7 @@
   text-align: center;
   border-top: 1px solid $dark;
   padding: 12px 0 90px;
+  display: none;
 
   @include breakpoint(md) {
     padding: 18px 0;

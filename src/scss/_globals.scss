@@ -56,3 +56,29 @@ a {
     font-weight: 300;
   }
 }
+
+.btn__set {
+  margin-top: 28px;
+  display: flex;
+
+  &__button {
+    background-color: $orange;
+    padding: 9px 28px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    margin: auto;
+
+    &:hover {
+      color: white;
+    }
+
+    @include breakpoint(lg) {
+      padding: 15px 37px;
+      font-size: 16px;
+    }
+  }
+}

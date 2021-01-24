@@ -7,17 +7,16 @@ self.addEventListener('install', event => {
 });
 
 workbox.precaching.precacheAndRoute([
-  {url: "/", revision: "1"},
-  {url: "/index.html", revision: "1"},
-  {url: "/detail.html", revision: "2"},
-  {url: "/src/components/app-nav.js", revision: "1"},
-  {url: "/src/components/app-footer.js", revision: "1"},
-  {url: "/manifest.json", revision: "1"},
-  {url: "/browserconfig.xml", revision: "1"},
-  {url: "/favicon.ico", revision: "1"},
-  {url: "/src/idb/idb.js", revision: "1"},
-  {url: "https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js", revision: "1"},
-  {url: "https://use.fontawesome.com/releases/v5.15.1/css/all.css", revision: "1"},
+  {url: "/", revision: "3"},
+  {url: "/index.html", revision: "3"},
+  {url: "/detail.html", revision: "3"},
+  {url: "/src/components/app-nav.js", revision: "3"},
+  {url: "/src/components/app-footer.js", revision: "3"},
+  {url: "/manifest.json", revision: "3"},
+  {url: "/browserconfig.xml", revision: "3"},
+  {url: "/favicon.ico", revision: "3"},
+  {url: "/src/idb/idb.js", revision: "3"},
+  {url: "https://use.fontawesome.com/releases/v5.15.1/css/all.css", revision: "2"},
 ],{
   ignoreUrlParametersMatching: [/.*/],
 });

@@ -406,33 +406,6 @@
       }
     }
   }
-
-  .show-more {
-    margin-top: 30px;
-    display: flex;
-
-    @include breakpoint(lg) {
-      margin-top: 50px;
-    }
-
-    .btn-show-more {
-      background-color: $orange;
-      padding: 9px 28px;
-      border: none;
-      outline: none;
-      border-radius: 6px;
-      color: white;
-      font-weight: bold;
-      font-size: 14px;
-      margin: auto;
-      display: none;
-
-      @include breakpoint(lg) {
-        padding: 15px 37px;
-        font-size: 16px;
-      }
-    }
-  }
 }
 
 .ending {

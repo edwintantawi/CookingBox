@@ -171,7 +171,7 @@ const renderData = ({ datas, isSearch, filter }) => {
   for (let food of datas) {
     foodList.innerHTML += `
     <div class="list__child__card">
-      <a href="/detail.html?id=${food.idMeal}">
+      <a href="/detail.html?id=${food.idMeal}&from=${window.location.hash.substr(1)}">
       <div class="wrap">
         <div
           class="picture"
