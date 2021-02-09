@@ -1,0 +1,31 @@
+.about {
+  text-align: center;
+  margin-top: 30px;
+  padding: 12px 0 90px;
+  h2.big {
+    margin-bottom: 60px;
+    @include breakpoint(md) {
+      margin-bottom: 70px;
+    }
+  }
+
+  .images img {
+    width: 90%;
+    margin-bottom: 32px;
+  }
+
+  .texts {
+    text-align: left;
+    p {
+      margin: 16px 0;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    .thank {
+      margin-top: 50px;
+    }
+  }
+}

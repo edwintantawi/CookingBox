@@ -22,6 +22,8 @@ export function renderPage(route){
         if( route === 'home' ){
           homePageAction();
           footer.style.display = 'block';
+        } else if( route === 'about' ){
+          footer.style.display = 'block';
         } else {
           footer.style.display = 'none';
         }
