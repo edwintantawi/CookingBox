@@ -16,8 +16,22 @@
 
   .texts {
     text-align: left;
+
+    h3 {
+      font-size: 20px;
+      @include breakpoint(lg) {
+        font-size: 26px;
+      }
+    }
+
     p {
       margin: 16px 0;
+      font-weight: 300;
+      font-size: 12px;
+
+      @include breakpoint(lg) {
+        font-size: 18px;
+      }
     }
 
     .right {
