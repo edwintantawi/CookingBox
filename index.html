@@ -1,96 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-  <meta name="keywords"
-        content="cookingBox, cooking, food recipes, cook, recipes, recipe, cooking box, box cooking, kitchen, food recipe, how to cook, food, foods, foods recipe, food recipes, recipe food, how to cook">
-  <meta name="description"
-        content="Learn To Cook From Home Like a Chef, Make the family kitchen like a restaurant kitchen more productive at home by cooking for the family or starting a culinary business. With our recipe recipes!. CookingBox is a website service that provides delicious recipes from several countries. We also support people to enjoy cooking in their homes because it is more economical and healthier. You can also open a culinary business. We are here for those of you who want to cook but are confused about what to cook, start cooking with us for your beloved family.">
-  <!-- -------------------------------- icon --------------------------------- -->
-  <meta http-equiv="X-UA-Compatible" content="IE=7">
-  <link rel="apple-touch-icon" sizes="57x57" href="/src/assets/icons/apple-icon-57x57.png">
-  <link rel="apple-touch-icon" sizes="60x60" href="/src/assets/icons/apple-icon-60x60.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="/src/assets/icons/apple-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="76x76" href="/src/assets/icons/apple-icon-76x76.png">
-  <link rel="apple-touch-icon" sizes="114x114" href="/src/assets/icons/apple-icon-114x114.png">
-  <link rel="apple-touch-icon" sizes="120x120" href="/src/assets/icons/apple-icon-120x120.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="/src/assets/icons/apple-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x152" href="/src/assets/icons/apple-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/src/assets/icons/apple-icon-180x180.png">
-  <link rel="icon" type="image/png" sizes="192x192"  href="/src/assets/icons/android-icon-192x192.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/src/assets/icons/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="/src/assets/icons/favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/src/assets/icons/favicon-16x16.png">
-  <link rel="manifest" href="manifest.json">
-  <meta name="msapplication-TileColor" content="#ffffff">
-  <meta name="msapplication-TileImage" content="/src/assets/icons/ms-icon-144x144.png">
-  <meta name="theme-color" content="#ffffff">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="keywords"
+      content="cookingBox, cooking, food recipes, cook, recipes, recipe, cooking box, box cooking, kitchen, food recipe, how to cook, food, foods, foods recipe, food recipes, recipe food, how to cook"
+    />
+    <meta
+      name="description"
+      content="Learn To Cook From Home Like a Chef, Make the family kitchen like a restaurant kitchen more productive at home by cooking for the family or starting a culinary business. With our recipe recipes!. CookingBox is a website service that provides delicious recipes from several countries. We also support people to enjoy cooking in their homes because it is more economical and healthier. You can also open a culinary business. We are here for those of you who want to cook but are confused about what to cook, start cooking with us for your beloved family."
+    />
+    <!-- -------------------------------- icon --------------------------------- -->
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/src/assets/icons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/src/assets/icons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/src/assets/icons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/src/assets/icons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/src/assets/icons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/src/assets/icons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/src/assets/icons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/src/assets/icons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/src/assets/icons/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/src/assets/icons/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/src/assets/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/src/assets/icons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/src/assets/icons/favicon-16x16.png"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="/src/assets/icons/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
 
-  <meta property="og:title" content="CookingBox">
-  <meta property="og:description" content="Learn To Cook From Home Like s Cheff, service that provides delicious recipes from several countries"> 
-  <meta property="og:url" content="https://cookingbox.xyz/">
-  <meta property="og:image" content="/src/assets/icons/maskable_icon_x512.png"> 
-  <meta property="og:type" content="article"> 
+    <meta property="og:title" content="CookingBox" />
+    <meta
+      property="og:description"
+      content="Learn To Cook From Home Like s Cheff, service that provides delicious recipes from several countries"
+    />
+    <meta property="og:url" content="https://cookingbox.xyz/" />
+    <meta
+      property="og:image"
+      content="/src/assets/icons/maskable_icon_x512.png"
+    />
+    <meta property="og:type" content="article" />
 
-  <!-- ------------------------------ bootstrap ------------------------------ -->
-  <link rel="stylesheet" href="dist/bootstrap.css">
-  <!-- --------------------------------- css --------------------------------- -->
-  <link rel="stylesheet" href="src/css/styles.min.css">
-  <!-- ----------------------------- fontawesome ----------------------------- -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-  <!-- ---------------------------- google fonts ----------------------------- -->
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <!-- -------------------------------- title -------------------------------- -->
-  <title>CookingBox</title>
-  
-</head>
+    <!-- ------------------------------ bootstrap ------------------------------ -->
+    <link rel="stylesheet" href="dist/bootstrap.css" />
+    <!-- --------------------------------- css --------------------------------- -->
+    <link rel="stylesheet" href="src/css/styles.min.css" />
+    <!-- ----------------------------- fontawesome ----------------------------- -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+      integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+      crossorigin="anonymous"
+    />
+    <!-- ---------------------------- google fonts ----------------------------- -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@0,300;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <!-- -------------------------------- title -------------------------------- -->
+    <title>CookingBox</title>
+  </head>
 
-<body>
-  <!-- START APP SHELL : Navbar -->
-  <app-nav></app-nav>
-  <!-- END APP SHELL : Navbar -->
-  
-  <!-- START : ROOT -->
-  <main id="root"></main>
-  <!-- END : ROOT -->
+  <body>
+    <!-- START APP SHELL : Navbar -->
+    <app-nav></app-nav>
+    <!-- END APP SHELL : Navbar -->
 
-  <!-- START APP SHELL : Footer -->
-  <app-footer></app-footer>
-  <!-- Footer APP SHELL : Footer -->
+    <!-- START : ROOT -->
+    <main id="root"></main>
+    <!-- END : ROOT -->
 
-  <!-- START : script -->
-  <!-- * IDB -->
-  <script src="src/idb/idb.js" defer></script>
-  
-  <!-- * JS Module -->
-  <script src="src/script/main.js" type="module" defer></script>
+    <!-- START APP SHELL : Footer -->
+    <app-footer></app-footer>
+    <!-- Footer APP SHELL : Footer -->
 
-  <!-- * service worker -->
-  <script>
-    const registerServiceWorker = () => {
-      return navigator.serviceWorker.register("/service-worker.js")
-      .then(registration => {
-        console.log('Register Service Worker is Success!');
-        return registration;
-      })
-      .catch(error => {
-        console.error(`Register Service Worker is Failed, Error: ${error}`);
-      });
-    };
-    // check browser service worker
-    if( 'serviceWorker' in navigator ){
-      // register service worker
-      registerServiceWorker();
-    }else{
-      console.log('Your Browser Doesn\'t Support Service Worker!');
-      alert('Your Browser Doesn\'t Support Service Worker! Some Feature maybe doesn\'t Work');
-    } 
-  </script>
-  <!-- END : script -->
+    <!-- START : script -->
+    <!-- * IDB -->
+    <script src="src/idb/idb.js" defer></script>
 
-</body>
+    <!-- * JS Module -->
+    <script src="src/script/main.js" type="module" defer></script>
 
+    <!-- * service worker -->
+    <script>
+      const registerServiceWorker = () => {
+        return navigator.serviceWorker
+          .register('/service-worker.js')
+          .then((registration) => {
+            console.log('Register Service Worker is Success!');
+            return registration;
+          })
+          .catch((error) => {
+            console.error(`Register Service Worker is Failed, Error: ${error}`);
+          });
+      };
+      // check browser service worker
+      if ('serviceWorker' in navigator) {
+        // register service worker
+        registerServiceWorker();
+      } else {
+        console.log("Your Browser Doesn't Support Service Worker!");
+        // alert('Your Browser Doesn\'t Support Service Worker! Some Feature maybe doesn\'t Work');
+      }
+    </script>
+    <!-- END : script -->
+  </body>
 </html>
